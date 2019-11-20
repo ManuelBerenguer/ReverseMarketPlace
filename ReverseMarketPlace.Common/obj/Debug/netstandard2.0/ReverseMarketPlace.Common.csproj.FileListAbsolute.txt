@@ -1,0 +1,5 @@
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace.Common\bin\Debug\netstandard2.0\ReverseMarketPlace.Common.deps.json
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace.Common\bin\Debug\netstandard2.0\ReverseMarketPlace.Common.dll
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.0\ReverseMarketPlace.Common.csprojAssemblyReference.cache
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.0\ReverseMarketPlace.Common.AssemblyInfoInputs.cache
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.0\ReverseMarketPlace.Common.AssemblyInfo.cs

@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseMarketPlace.Common", "ReverseMarketPlace.Common\ReverseMarketPlace.Common.csproj", "{65FEE606-536C-4FE6-9D24-F6D54780F970}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demands", "Demands", "{5FA25112-1DB0-44B9-BDE5-7499A305E527}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{62105167-3A2F-4B1E-B07D-DCF0E59320E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1D1EE68F-2155-498E-8217-321B3B4204D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseMarketPlace.Demands.Core", "ReverseMarketPlace.Demands.Core\ReverseMarketPlace.Demands.Core.csproj", "{F33FE8A7-7E0F-43E6-B572-2DF795129F85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseMarketPlace.Demands.Infrastructure", "ReverseMarketPlace.Demands.Infrastructure\ReverseMarketPlace.Demands.Infrastructure.csproj", "{26E36295-F44D-4FF1-994B-893FD44B22AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReversemarketPlace.Demands.Tests", "ReversemarketPlace.Demands.Tests\ReversemarketPlace.Demands.Tests.csproj", "{255D6938-A743-4BD5-89BB-8EFCE751906A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65FEE606-536C-4FE6-9D24-F6D54780F970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65FEE606-536C-4FE6-9D24-F6D54780F970}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65FEE606-536C-4FE6-9D24-F6D54780F970}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65FEE606-536C-4FE6-9D24-F6D54780F970}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F33FE8A7-7E0F-43E6-B572-2DF795129F85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F33FE8A7-7E0F-43E6-B572-2DF795129F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F33FE8A7-7E0F-43E6-B572-2DF795129F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F33FE8A7-7E0F-43E6-B572-2DF795129F85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26E36295-F44D-4FF1-994B-893FD44B22AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26E36295-F44D-4FF1-994B-893FD44B22AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26E36295-F44D-4FF1-994B-893FD44B22AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26E36295-F44D-4FF1-994B-893FD44B22AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{255D6938-A743-4BD5-89BB-8EFCE751906A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255D6938-A743-4BD5-89BB-8EFCE751906A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255D6938-A743-4BD5-89BB-8EFCE751906A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255D6938-A743-4BD5-89BB-8EFCE751906A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{62105167-3A2F-4B1E-B07D-DCF0E59320E7} = {5FA25112-1DB0-44B9-BDE5-7499A305E527}
+		{1D1EE68F-2155-498E-8217-321B3B4204D8} = {5FA25112-1DB0-44B9-BDE5-7499A305E527}
+		{F33FE8A7-7E0F-43E6-B572-2DF795129F85} = {62105167-3A2F-4B1E-B07D-DCF0E59320E7}
+		{26E36295-F44D-4FF1-994B-893FD44B22AE} = {62105167-3A2F-4B1E-B07D-DCF0E59320E7}
+		{255D6938-A743-4BD5-89BB-8EFCE751906A} = {1D1EE68F-2155-498E-8217-321B3B4204D8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB9A7025-6161-4CA5-B2EF-7F7971827EEB}
+	EndGlobalSection
+EndGlobal

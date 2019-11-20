@@ -1,0 +1,8 @@
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace\bin\Debug\netcoreapp3.0\appsettings.Development.json
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace\bin\Debug\netcoreapp3.0\appsettings.json
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace\obj\Debug\netcoreapp3.0\staticwebassets\ReverseMarketPlace.StaticWebAssets.Manifest.cache
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace\obj\Debug\netcoreapp3.0\staticwebassets\ReverseMarketPlace.StaticWebAssets.xml
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace\obj\Debug\netcoreapp3.0\ReverseMarketPlace.AssemblyInfoInputs.cache
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace\obj\Debug\netcoreapp3.0\ReverseMarketPlace.AssemblyInfo.cs
+C:\Users\manuel.berenguer\source\repos\Microservices\ReverseMarketPlace\ReverseMarketPlace\obj\Debug\netcoreapp3.0\ReverseMarketPlace.RazorTargetAssemblyInfo.cache
