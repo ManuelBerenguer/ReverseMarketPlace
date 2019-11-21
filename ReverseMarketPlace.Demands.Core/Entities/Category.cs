@@ -13,7 +13,7 @@ namespace ReverseMarketPlace.Demands.Core.Entities
 
         public Category UpperCategory { get; private set; }
 
-        private Category() { }
+        public Category() { }
 
         public Category(string name, Category upperCategory)
         {

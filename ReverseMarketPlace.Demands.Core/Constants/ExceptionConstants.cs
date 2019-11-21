@@ -8,6 +8,7 @@ namespace ReverseMarketPlace.Demands.Core.Constants
     {
         /* Demands */
         public const string QuantityMustBeGreaterThanZero = "Quantity Must Be Grater Than Zero";
+        public const string DemandNotFound = "Demand Not Found";
 
         /* Categories */
         public const string CategoryNotFound = "Category Not Found";

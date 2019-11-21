@@ -24,7 +24,7 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         /// <summary>
         /// Quantity of the product demanded
         /// </summary>
-        [IgnoreMember]
+        [IgnoreMember] // The quantity should not being taken into account comparing demands. For us, two demands are the same if the same buyer demands the same product.
         [Required]
         public float Quantity { get; private set; }
 
@@ -33,6 +33,8 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         /// </summary>
         [IgnoreMember]
         public DemandStatusEnum Status { get; private set; } // Ignored in comparisons because of attribute
+
+        public Demand() { }
 
         public Demand(string buyerReference, Category category, float quantity)
         {

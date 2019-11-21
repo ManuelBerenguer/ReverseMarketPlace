@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
 {
-    public class FindGroupsForDemandResultResult
+    public class FindGroupsForDemandResult
     {
     }
 }

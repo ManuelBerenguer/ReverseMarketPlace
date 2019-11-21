@@ -21,5 +21,10 @@ namespace ReversemarketPlace.Demands.Tests.TestData
         {
             return new Demand("111", TestCategoryFactory.Category3(), 5);
         }
+
+        internal static Demand FiveUnitsOfCategory4Buyer111()
+        {
+            return new Demand("111", TestCategoryFactory.Category4(), 5);
+        }
     }
 }

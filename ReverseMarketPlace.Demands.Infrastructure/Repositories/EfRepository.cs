@@ -10,7 +10,7 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Repositories
 {
     public class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly AppDbContext _dbContext;
+        protected readonly AppDbContext _dbContext;
 
         public EfRepository(AppDbContext dbContext)
         {

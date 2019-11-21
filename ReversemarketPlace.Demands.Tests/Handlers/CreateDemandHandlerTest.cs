@@ -19,11 +19,11 @@ using Xunit;
 
 namespace ReversemarketPlace.Demands.Tests.Handlers
 {
+    [Collection("Repository Collection")]
     public class CreateDemandHandlerTest
     {
-        // We mock repositories
-        private readonly Mock<IDemandsRepository> _demandsRepository;
-        private readonly Mock<IRepository<Category>> _categoriesRepository;
+        private readonly IDemandsRepository _demandsRepository;
+        private readonly IRepository<Category> _categoriesRepository;
 
         private readonly Mock<IStringLocalizer<CreateDemandHandler>> _localizer;
         private readonly Mock<ILogger<CreateDemandHandler>> _logger;
@@ -34,8 +34,12 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
 
         public CreateDemandHandlerTest()
         {
-            _demandsRepository = new Mock<IDemandsRepository>();
-            _categoriesRepository = new Mock<IRepository<Category>>();
+            // We create new in-memory database context
+            //RepositoryFactory.CreateNewContext();
+
+            _demandsRepository = RepositoryFactory.GetDemandsRepository();
+            _categoriesRepository = RepositoryFactory.GetCategoryRepository();
+                        
             _localizer = new Mock<IStringLocalizer<CreateDemandHandler>>();
             _logger = new Mock<ILogger<CreateDemandHandler>>();            
 
@@ -45,7 +49,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
             });
             _mapper = mockMapper.CreateMapper();
 
-            _createDemandHandler = new CreateDemandHandler(_demandsRepository.Object, _categoriesRepository.Object, _localizer.Object, _logger.Object, _mapper);
+            _createDemandHandler = new CreateDemandHandler(_demandsRepository, _categoriesRepository, _localizer.Object, _logger.Object, _mapper);
         }
 
         [Fact]
@@ -61,10 +65,8 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         [Fact]
         public async Task CreateDemandWithUnknownCategoryThrowsException()
         {
-            CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 100, 1);
-
-            _categoriesRepository.Setup(repo => repo.GetByIdAsync(100)).Returns(Task.FromResult<Category>(null));
-
+            CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 1000000000, 1);
+                        
             await Assert.ThrowsAsync<CategoryNotFoundException>(
                 () => _createDemandHandler.Handle(createDemandCommand, CancellationToken.None)
             );
@@ -75,35 +77,29 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         {
             CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 1, 1);
 
-            _categoriesRepository.Setup(repo => repo.GetByIdAsync(1)).Returns(Task.FromResult<Category>( TestCategoryFactory.Category1() ));
-
-            IEnumerable<Demand> buyerDemands = new List<Demand>() { TestDemandFactory.OneUnitOfCategory1Buyer111(), TestDemandFactory.ThreeUnitsOfCategory2Buyer111() };
-            _demandsRepository.Setup(repo => repo.GetBuyerDemands("111")).Returns(Task.FromResult( buyerDemands ));
-
+            IEnumerable<Demand> buyerDemands = await _demandsRepository.GetBuyerDemands(createDemandCommand.BuyerReference);
+            
             var createDemandResult = await _createDemandHandler.Handle(createDemandCommand, CancellationToken.None);
 
             Assert.IsType<CreateDemandResult>(createDemandResult);
             Assert.Null(createDemandResult.Created);
             Assert.NotNull(createDemandResult.Duplicated);
-            Assert.Equal(createDemandResult.Duplicated, _mapper.Map<DemandDto>(TestDemandFactory.OneUnitOfCategory1Buyer111()));
+            Assert.Equal(createDemandResult.Duplicated, _mapper.Map<DemandDto>(await _demandsRepository.GetByIdAsync(1)));
         }
 
         [Fact]
         public async Task UserCanCreateNotDuplicatedDemand()
         {
-            CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 3, 5);
+            CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 4, 5);
 
-            _categoriesRepository.Setup(repo => repo.GetByIdAsync(3)).Returns(Task.FromResult<Category>(TestCategoryFactory.Category3()));
-
-            IEnumerable<Demand> buyerDemands = new List<Demand>() { TestDemandFactory.OneUnitOfCategory1Buyer111(), TestDemandFactory.ThreeUnitsOfCategory2Buyer111() };
-            _demandsRepository.Setup(repo => repo.GetBuyerDemands("111")).Returns(Task.FromResult(buyerDemands));
+            IEnumerable<Demand> buyerDemands = await _demandsRepository.GetBuyerDemands(createDemandCommand.BuyerReference);
 
             var createDemandResult = await _createDemandHandler.Handle(createDemandCommand, CancellationToken.None);
 
             Assert.IsType<CreateDemandResult>(createDemandResult);
             Assert.Null(createDemandResult.Duplicated);
             Assert.NotNull(createDemandResult.Created);
-            Assert.Equal(createDemandResult.Created, _mapper.Map<DemandDto>(TestDemandFactory.FiveUnitsOfCategory3Buyer111()));
+            Assert.Equal(createDemandResult.Created, _mapper.Map<DemandDto>(TestDemandFactory.FiveUnitsOfCategory4Buyer111()));
         }
     }
 }

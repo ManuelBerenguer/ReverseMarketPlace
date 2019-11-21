@@ -8,7 +8,7 @@ namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
     /// <summary>
     /// Command to find groups for a demand
     /// </summary>
-    public class FindGroupsForDemandCommand : IRequest<FindGroupsForDemandResultResult>
+    public class FindGroupsForDemandCommand : IRequest<FindGroupsForDemandResult>
     {
         /// <summary>
         /// Id of the demand to find groups for
