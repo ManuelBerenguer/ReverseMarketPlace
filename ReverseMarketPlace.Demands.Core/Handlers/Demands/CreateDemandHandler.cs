@@ -23,16 +23,13 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
     /// Handler for create demand commands
     /// </summary>
     public sealed class CreateDemandHandler : BaseCommandHandler<CreateDemandHandler>, IRequestHandler<CreateDemandCommand, CreateDemandResult>
-    {
-        private readonly IDemandsRepository _demandsRepository;
-        private readonly IRepository<Category> _categoriesRepository;
+    {        
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateDemandHandler(
-            IDemandsRepository demandsRepository, IRepository<Category> categoriesRepository, 
-            IStringLocalizer<CreateDemandHandler> localizer, ILogger<CreateDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
-        {            
-            _demandsRepository = demandsRepository;
-            _categoriesRepository = categoriesRepository;
+        public CreateDemandHandler(            
+            IUnitOfWork unitOfWork, IStringLocalizer<CreateDemandHandler> localizer, ILogger<CreateDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
+        {
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<CreateDemandResult> Handle(CreateDemandCommand request, CancellationToken cancellationToken)
@@ -41,7 +38,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
                 throw new QuantityMustBeGreaterThanZeroException(_localizer[ExceptionConstants.QuantityMustBeGreaterThanZero]);
 
             // We get the category by id and if the category doesn't exist we throw exception
-            var category = await _categoriesRepository.GetByIdAsync(request.CategoryId);
+            var category = await _unitOfWork.CategoriesRepository.GetByIdAsync(request.CategoryId);
             if (category.IsNull())
                 throw new CategoryNotFoundException(_localizer[ExceptionConstants.CategoryNotFound]);
 
@@ -49,7 +46,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
             var newDemand = new Demand(request.BuyerReference, category, request.Quantity);
 
             // We get all the demands for this buyer
-            var buyerDemands = await _demandsRepository.GetBuyerDemands(request.BuyerReference);
+            var buyerDemands = await _unitOfWork.DemandsRepository.GetBuyerDemands(request.BuyerReference);
 
             // The user can not create a demand exactly like another previously created by himself
             var duplicatedDemand = buyerDemands.FirstOrDefault( d => d.Equals(newDemand) );
@@ -57,7 +54,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
                 return new CreateDemandResult(null, _mapper.Map<DemandDto>(duplicatedDemand));
             else
             {
-                await _demandsRepository.AddAsync(newDemand);
+                await _unitOfWork.DemandsRepository.AddAsync(newDemand);
                 return new CreateDemandResult(_mapper.Map<DemandDto>(newDemand), null);
             }
         }       

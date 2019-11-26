@@ -35,6 +35,10 @@ namespace ReversemarketPlace.Demands.Tests
             SeedData.PopulateTestData(_dbContext);
         }
                 
+        public static EfUnitOfWork GetUnitOfWork()
+        {
+            return new EfUnitOfWork(_dbContext);
+        }
 
         public static EfRepository<Category> GetCategoryRepository()
         {
