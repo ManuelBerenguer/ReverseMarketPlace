@@ -19,7 +19,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
     [Collection("Repository Collection")]
     public class FindGroupsForDemandHandlerTest
     {
-        private readonly IDemandsRepository _demandsRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly FindGroupsForDemandHandler _findGroupsForDemandHandler;
 
         private readonly Mock<IStringLocalizer<FindGroupsForDemandHandler>> _localizer;
@@ -28,10 +28,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
 
         public FindGroupsForDemandHandlerTest()
         {
-            // We create new in-memory database context
-            //RepositoryFactory.CreateNewContext();
-
-            _demandsRepository = RepositoryFactory.GetDemandsRepository();
+            _unitOfWork = RepositoryFactory.GetUnitOfWork();
 
             _localizer = new Mock<IStringLocalizer<FindGroupsForDemandHandler>>();
             _logger = new Mock<ILogger<FindGroupsForDemandHandler>>();
@@ -42,7 +39,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
             });
             _mapper = mockMapper.CreateMapper();
 
-            _findGroupsForDemandHandler = new FindGroupsForDemandHandler(_demandsRepository, _localizer.Object, _logger.Object, _mapper);
+            _findGroupsForDemandHandler = new FindGroupsForDemandHandler(_unitOfWork, _localizer.Object, _logger.Object, _mapper);
         }
 
         [Fact]

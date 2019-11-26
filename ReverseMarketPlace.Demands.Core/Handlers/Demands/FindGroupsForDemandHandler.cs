@@ -18,18 +18,18 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
 {
     public class FindGroupsForDemandHandler : BaseCommandHandler<FindGroupsForDemandHandler>, IRequestHandler<FindGroupsForDemandCommand, FindGroupsForDemandResult>
     {
-        private readonly IDemandsRepository _demandsRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public FindGroupsForDemandHandler(IDemandsRepository demandsRepository, IStringLocalizer<FindGroupsForDemandHandler> localizer, 
+        public FindGroupsForDemandHandler(IUnitOfWork unitOfWork, IStringLocalizer<FindGroupsForDemandHandler> localizer, 
             ILogger<FindGroupsForDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
         {
-            _demandsRepository = demandsRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<FindGroupsForDemandResult> Handle(FindGroupsForDemandCommand request, CancellationToken cancellationToken)
         {
             // We get the demand by id and if the demand doesn't exist we throw exception
-            var demand = await _demandsRepository.GetByIdAsync(request.Id);
+            var demand = await _unitOfWork.DemandsRepository.GetByIdAsync(request.Id);
             if (demand.IsNull())
                 throw new DemandNotFoundException(_localizer[ExceptionConstants.DemandNotFound]);
 
