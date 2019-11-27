@@ -13,6 +13,8 @@ namespace ReverseMarketPlace.Demands.Core.Entities
 
         public Category UpperCategory { get; private set; }
 
+        public ICollection<CategoryAttributes> CategoryAttributes { get; private set; }
+
         public Category() { }
 
         public Category(string name, Category upperCategory)

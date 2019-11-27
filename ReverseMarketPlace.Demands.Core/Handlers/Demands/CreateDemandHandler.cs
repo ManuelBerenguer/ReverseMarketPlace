@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using ReverseMarketPlace.Common.Extensions;
@@ -8,6 +9,8 @@ using ReverseMarketPlace.Demands.Core.Constants;
 using ReverseMarketPlace.Demands.Core.Dtos;
 using ReverseMarketPlace.Demands.Core.Entities;
 using ReverseMarketPlace.Demands.Core.Exceptions;
+using ReverseMarketPlace.Demands.Core.Handlers.CategoryAttributes;
+using ReverseMarketPlace.Demands.Core.Messages.Commands.CategoryAttributes;
 using ReverseMarketPlace.Demands.Core.Messages.Commands.Demands;
 using ReverseMarketPlace.Demands.Core.Repositories;
 using System;
@@ -25,11 +28,14 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
     public sealed class CreateDemandHandler : BaseCommandHandler<CreateDemandHandler>, IRequestHandler<CreateDemandCommand, CreateDemandResult>
     {        
         private readonly IUnitOfWork _unitOfWork;
+        private readonly CheckCategoryAttributesHandler _checkCategoryAttributesHandler;
 
         public CreateDemandHandler(            
-            IUnitOfWork unitOfWork, IStringLocalizer<CreateDemandHandler> localizer, ILogger<CreateDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
+            IUnitOfWork unitOfWork, CheckCategoryAttributesHandler checkCategoryAttributesHandler, IStringLocalizer<CreateDemandHandler> localizer, 
+            ILogger<CreateDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
         {
             _unitOfWork = unitOfWork;
+            _checkCategoryAttributesHandler = checkCategoryAttributesHandler;
         }
 
         public async Task<CreateDemandResult> Handle(CreateDemandCommand request, CancellationToken cancellationToken)
@@ -41,6 +47,15 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
             var category = await _unitOfWork.CategoriesRepository.GetByIdAsync(request.CategoryId);
             if (category.IsNull())
                 throw new CategoryNotFoundException(_localizer[ExceptionConstants.CategoryNotFound]);
+
+            // We check if the attributes added to the demand belongs to the category
+            if (request.Attributes.IsNotNull())
+            {
+                CheckCategoryAttributesCommand checkCategoryAttributesCommand = new CheckCategoryAttributesCommand(request.Attributes.Keys, request.CategoryId);
+                bool checkAttributesResult = await _checkCategoryAttributesHandler.Handle(checkCategoryAttributesCommand, CancellationToken.None);
+                if (!checkAttributesResult)
+                    throw new CategoryAttributeNotFoundException(_localizer[ExceptionConstants.CategoryAttributeNotFound]);
+            }
 
             // The demand to be created
             var newDemand = new Demand(request.BuyerReference, category, request.Quantity);

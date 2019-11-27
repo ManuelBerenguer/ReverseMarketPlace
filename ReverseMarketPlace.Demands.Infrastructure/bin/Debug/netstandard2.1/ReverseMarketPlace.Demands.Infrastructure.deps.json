@@ -1460,6 +1460,7 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "MediatR": "7.0.0",
+          "Microsoft.EntityFrameworkCore": "3.0.1",
           "Microsoft.Extensions.Localization.Abstractions": "3.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "3.0.1",
           "ReverseMarketPlace.Common": "1.0.0"

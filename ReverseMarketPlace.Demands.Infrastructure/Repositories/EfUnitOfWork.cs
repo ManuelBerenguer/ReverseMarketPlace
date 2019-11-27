@@ -12,6 +12,9 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Repositories
     {
         private IDemandsRepository _demandsRepository;
         private ICategoriesRepository _categoriesRepository;
+        private IAttributesRepository _attributesRepository;
+        private ICategoryAttributesRepository _categoryAttributesRepository;
+        private IDemandGroupsRepository _demandGroupsRepository;
         private readonly AppDbContext _appDbContext;
 
         public EfUnitOfWork(AppDbContext appDbContext) {
@@ -43,9 +46,48 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Repositories
             }
         }
 
-        public Task<int> SaveChangesAsync()
+        public IAttributesRepository AttributesRepository
         {
-            throw new NotImplementedException();
+            get
+            {
+                if( _attributesRepository.IsNull() )
+                {
+                    _attributesRepository = new EfAttributesRepository(_appDbContext);
+                }
+
+                return _attributesRepository;
+            }
+        }
+
+        public ICategoryAttributesRepository CategoryAttributesRepository
+        {
+            get
+            {
+                if (_categoryAttributesRepository.IsNull())
+                {
+                    _categoryAttributesRepository = new EfCategoryAttributesRepository(_appDbContext);
+                }
+
+                return _categoryAttributesRepository;
+            }
+        }
+
+        public IDemandGroupsRepository DemandGroupsRepository
+        {
+            get
+            {
+                if (_demandGroupsRepository.IsNull())
+                {
+                    _demandGroupsRepository = new EfDemandGroupsRepository(_appDbContext);
+                }
+
+                return _demandGroupsRepository;
+            }
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await _appDbContext.SaveChangesAsync();
         }
     }
 }

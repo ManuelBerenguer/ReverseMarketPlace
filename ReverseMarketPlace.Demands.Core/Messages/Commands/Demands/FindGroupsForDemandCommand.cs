@@ -13,11 +13,11 @@ namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
         /// <summary>
         /// Id of the demand to find groups for
         /// </summary>
-        public int Id { get; set; }
+        public int DemandId { get; set; }
 
-        public FindGroupsForDemandCommand(int id)
+        public FindGroupsForDemandCommand(int demandId)
         {
-            Id = id;
+            DemandId = demandId;
         }
     }
 }

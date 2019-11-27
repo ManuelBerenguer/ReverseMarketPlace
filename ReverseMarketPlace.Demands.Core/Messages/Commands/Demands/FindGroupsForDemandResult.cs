@@ -6,5 +6,6 @@ namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
 {
     public class FindGroupsForDemandResult
     {
+
     }
 }

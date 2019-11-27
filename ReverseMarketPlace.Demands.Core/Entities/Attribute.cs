@@ -15,6 +15,10 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         [Required]
         public AttributeDataTypeEnum DataTypeId { get; private set; }
 
+        public ICollection<DemandAttributes> DemandAttributes { get; private set; }
+
+        public ICollection<CategoryAttributes> CategoryAttributes { get; private set; }
+
         private Attribute() { }
 
         public Attribute(string name, AttributeDataTypeEnum dataType)

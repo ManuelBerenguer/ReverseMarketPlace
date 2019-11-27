@@ -22,11 +22,17 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         public Category Category { get; set; }
 
         /// <summary>
-        /// Quantity of the product demanded
+        /// Quantity of the product demanded. The quantity should not being taken into account comparing demands. 
+        /// For us, two demands are the same if the same buyer demands the same product with the same attributes.
         /// </summary>
-        [IgnoreMember] // The quantity should not being taken into account comparing demands. For us, two demands are the same if the same buyer demands the same product.
+        [IgnoreMember]
         [Required]
         public float Quantity { get; private set; }
+
+        /// <summary>
+        /// Attributes to detail more what the user wants
+        /// </summary>
+        public ICollection<DemandAttributes> DemandAttributes { get; private set; }
 
         /// <summary>
         /// Current status of the demand

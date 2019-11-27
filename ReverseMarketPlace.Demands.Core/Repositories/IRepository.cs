@@ -11,6 +11,7 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
     public interface IRepository<T> where T : BaseEntity
     {
         Task<T> GetByIdAsync(int id);
+        Task<IEnumerable<T>> GetByIdsAsync(IEnumerable<int> ids);
         Task AddAsync(T entity);
         Task SaveAsync();
     }

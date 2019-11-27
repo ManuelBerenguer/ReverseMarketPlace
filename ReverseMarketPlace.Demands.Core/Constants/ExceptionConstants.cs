@@ -12,5 +12,9 @@ namespace ReverseMarketPlace.Demands.Core.Constants
 
         /* Categories */
         public const string CategoryNotFound = "Category Not Found";
+
+        /* Category Attributes */
+        public const string CategoryAttributeNotFound = "Category Attribute Not Found";
+        
     }
 }

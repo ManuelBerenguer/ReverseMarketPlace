@@ -28,6 +28,11 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Repositories
             return await _dbContext.FindAsync<T>(id);
         }
 
+        public async Task<IEnumerable<T>> GetByIdsAsync(IEnumerable<int> ids)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task SaveAsync()
         {
             await _dbContext.SaveChangesAsync();

@@ -8,6 +8,7 @@ namespace ReverseMarketPlace.Demands.Core.Enums.Demands
     {
         StringValue,
         NumericValue,
-        DateValue
+        DateValue,
+        BoleanValue
     }
 }

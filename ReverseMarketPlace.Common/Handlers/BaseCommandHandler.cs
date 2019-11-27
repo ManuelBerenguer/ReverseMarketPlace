@@ -11,7 +11,7 @@ namespace ReverseMarketPlace.Common.Handlers
     /// Base class for any command handler built following the Command Query Responsability Segregation (CQRS).
     /// </summary>
     public abstract class BaseCommandHandler<T>
-    {
+    {        
         /// <summary>
         /// Used for localization
         /// </summary>

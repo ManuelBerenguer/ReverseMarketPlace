@@ -26,11 +26,14 @@ namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
         /// </summary>
         public float Quantity { get; }
 
-        public CreateDemandCommand(string buyerReference, int categoryId, float quantity)
+        public IDictionary<int, object> Attributes { get; }
+
+        public CreateDemandCommand(string buyerReference, int categoryId, float quantity, IDictionary<int, object> attributes)
         {
             BuyerReference = buyerReference;
             CategoryId = categoryId;
             Quantity = quantity;
+            Attributes = attributes;
         }
     }
 }
