@@ -44,24 +44,32 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
                 throw new QuantityMustBeGreaterThanZeroException(_localizer[ExceptionConstants.QuantityMustBeGreaterThanZero]);
 
             // We get the category by id and if the category doesn't exist we throw exception
-            var category = await _unitOfWork.CategoriesRepository.GetByIdAsync(request.CategoryId);
+            var category = request.Attributes.IsNotNull() ? await _unitOfWork.CategoriesRepository.GetByIdAsync(request.CategoryId, c => c.CategoryAttributes, c => c.CategoryAttributes.Select )
+                : await _unitOfWork.CategoriesRepository.GetByIdAsync(request.CategoryId);
             if (category.IsNull())
                 throw new CategoryNotFoundException(_localizer[ExceptionConstants.CategoryNotFound]);
 
             // We check if the attributes added to the demand belongs to the category
             if (request.Attributes.IsNotNull())
             {
-                CheckCategoryAttributesCommand checkCategoryAttributesCommand = new CheckCategoryAttributesCommand(request.Attributes.Keys, request.CategoryId);
-                bool checkAttributesResult = await _checkCategoryAttributesHandler.Handle(checkCategoryAttributesCommand, CancellationToken.None);
-                if (!checkAttributesResult)
-                    throw new CategoryAttributeNotFoundException(_localizer[ExceptionConstants.CategoryAttributeNotFound]);
+                var categoryAttributesId = category.CategoryAttributes.Select(catAttr => catAttr.Attribute.Id);
+                foreach (var attributeId in request.Attributes.Keys)
+                {
+                    if(!categoryAttributesId.Contains(attributeId)) // If the attribute is not allowed for that category
+                        throw new CategoryAttributeNotFoundException(_localizer[ExceptionConstants.CategoryAttributeNotFound]);
+                }
+
+                //CheckCategoryAttributesCommand checkCategoryAttributesCommand = new CheckCategoryAttributesCommand(request.Attributes.Keys, request.CategoryId);
+                //bool checkAttributesResult = await _checkCategoryAttributesHandler.Handle(checkCategoryAttributesCommand, CancellationToken.None);
+                //if (!checkAttributesResult)
+                //    throw new CategoryAttributeNotFoundException(_localizer[ExceptionConstants.CategoryAttributeNotFound]);
             }
 
             // The demand to be created
             var newDemand = new Demand(request.BuyerReference, category, request.Quantity);
 
             // We get all the demands for this buyer
-            var buyerDemands = await _unitOfWork.DemandsRepository.GetBuyerDemands(request.BuyerReference);
+            var buyerDemands = await _unitOfWork.DemandsRepository.GetBuyerDemands(request.BuyerReference, d => d.Category, d => d.DemandAttributes);
 
             // The user can not create a demand exactly like another previously created by himself
             var duplicatedDemand = buyerDemands.FirstOrDefault( d => d.Equals(newDemand) );

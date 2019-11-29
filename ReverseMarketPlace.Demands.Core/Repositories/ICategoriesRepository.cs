@@ -8,5 +8,6 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
 {
     public interface ICategoriesRepository : IRepository<Category>
     {
+        
     }
 }

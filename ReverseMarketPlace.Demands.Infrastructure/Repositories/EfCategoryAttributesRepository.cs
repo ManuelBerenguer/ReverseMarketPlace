@@ -5,6 +5,7 @@ using ReverseMarketPlace.Demands.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +15,12 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Repositories
     {
         public EfCategoryAttributesRepository(AppDbContext appDbContext) : base(appDbContext) { }
 
-        public async Task<IEnumerable<CategoryAttributes>> GetCategoryAttributes(int categoryId)
+        public async Task<IEnumerable<CategoryAttributes>> GetCategoryAttributes(int categoryId, params Expression<Func<CategoryAttributes, object>>[] includeExpressions)
         {
-            return await _dbContext.CategoryAttributes.Where(catAtt => catAtt.Category.Id == categoryId).Include(catAtt => catAtt.Attribute).ToListAsync();
+            var query = GetQueryable(includeExpressions);
+
+            return query != null ? await query.Where(catAtt => catAtt.Category.Id == categoryId).ToListAsync()
+                : await DbSet.Where(catAtt => catAtt.Category.Id == categoryId).ToListAsync();
         }
     }
 }

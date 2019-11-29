@@ -6,7 +6,7 @@ using Attribute = ReverseMarketPlace.Demands.Core.Entities.Attribute;
 
 namespace ReverseMarketPlace.Demands.Core.Repositories
 {
-    public interface IAttributesRepository : IRepository<Attribute>
+    public interface IAttributesRepository //: IRepository<Attribute>
     {
         Task<IEnumerable<Attribute>> GetAttributesByIds(IEnumerable<int> ids);
     }

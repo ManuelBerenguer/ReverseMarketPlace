@@ -14,9 +14,13 @@ namespace ReverseMarketPlace.Demands.Core.Mappers
     {
         public MappingProfile()
         {
+            // Demands
             CreateMap<Demand, DemandDto>() // Means we want to map from Demand to DemadDto
                 .ForMember(d => d.Category, opts => opts.MapFrom(src => src.Category.Name));
-                //.ForMember(d => d.Status, opts => opts.MapFrom(src => src.Status) ); 
+            //.ForMember(d => d.Status, opts => opts.MapFrom(src => src.Status) ); 
+
+            // Groups
+            CreateMap<DemandsGroup, DemandsGroupDto>(); // Means we want to map from DemandsGroup to DemandsGroupDto
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,6 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
 {
     public interface IDemandsRepository : IRepository<Demand>
     {
-        Task<IEnumerable<Demand>> GetBuyerDemands(string buyerReference);
+        Task<IEnumerable<Demand>> GetBuyerDemands(string buyerReference, params Expression<Func<Demand, object>>[] includeExpressions);
     }
 }
