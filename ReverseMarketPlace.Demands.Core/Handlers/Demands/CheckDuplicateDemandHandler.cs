@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using ReverseMarketPlace.Common.Handlers;
+using ReverseMarketPlace.Demands.Core.Dtos;
 using ReverseMarketPlace.Demands.Core.Messages.Commands.Demands;
 using ReverseMarketPlace.Demands.Core.Repositories;
 using System;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
 {
-    public class CheckDuplicateDemandHandler : BaseCommandHandler<CheckDuplicateDemandHandler>, IRequestHandler<CheckDuplicateDemandCommand, bool>
+    public class CheckDuplicateDemandHandler : BaseCommandHandler<CheckDuplicateDemandHandler>, IRequestHandler<CheckDuplicateDemandCommand, CheckDuplicateDemandResult>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -30,7 +31,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
         /// <param name="request">Buyer reference and potential demand properties</param>
         /// <param name="cancellationToken"></param>
         /// <returns>True if duplicated demand, false otherwise. </returns>
-        public async Task<bool> Handle(CheckDuplicateDemandCommand request, CancellationToken cancellationToken)
+        public async Task<CheckDuplicateDemandResult> Handle(CheckDuplicateDemandCommand request, CancellationToken cancellationToken)
         {
             // We get all the demands for the buyer
             var buyerDemands = await _unitOfWork.DemandsRepository.GetBuyerDemandsWithCategoryAndAttributes(request.BuyerReference);
@@ -58,12 +59,14 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
                             {
                                 // TODO: Compare value
                             }
-                        }                                                
+                        }
+
+                        return new CheckDuplicateDemandResult() { Duplicated = _mapper.Map<DemandDto>(demand) };
                     }                    
                 }
             }
 
-            return false; // Not duplicated demand
+            return null; // Not duplicated demand
         }
     }
 }

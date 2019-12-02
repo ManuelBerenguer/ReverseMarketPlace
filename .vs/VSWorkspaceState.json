@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ReverseMarketPlace.Demands.Core",
+    "\\ReverseMarketPlace.Demands.Core\\Handlers",
+    "\\ReverseMarketPlace.Demands.Core\\Handlers\\Demands",
+    "\\ReversemarketPlace.Demands.Tests"
   ],
   "SelectedNode": "\\ReverseMarketPlace.sln",
   "PreviewInSolutionExplorer": false

@@ -33,6 +33,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
 
         private readonly CreateDemandHandler _createDemandHandler;
         private readonly CheckCategoryAttributesHandler _checkCategoryAttributesHandler;
+        private readonly CheckDuplicateDemandHandler _checkDuplicateDemandHandler;
 
         private readonly IMapper _mapper;
 
@@ -52,6 +53,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
             _mapper = mockMapper.CreateMapper();
 
             _checkCategoryAttributesHandler = new CheckCategoryAttributesHandler(_unitOfWork, _localizerCategoryAttributes.Object, _loggerCategoryAttributes.Object, _mapper);
+            _checkDuplicateDemandHandler = new CheckDuplicateDemandHandler(_unitOfWork, _locali)
             _createDemandHandler = new CreateDemandHandler(_unitOfWork, _checkCategoryAttributesHandler, _localizerCreateDemand.Object, _loggerCreateDemand.Object, _mapper);
         }
 

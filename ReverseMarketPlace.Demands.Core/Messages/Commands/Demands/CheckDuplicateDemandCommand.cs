@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
 {
-    public class CheckDuplicateDemandCommand : IRequest<bool>
+    public class CheckDuplicateDemandCommand : IRequest<CheckDuplicateDemandResult>
     {
         /// <summary>
         /// Reference of the buyer who is creating the demand

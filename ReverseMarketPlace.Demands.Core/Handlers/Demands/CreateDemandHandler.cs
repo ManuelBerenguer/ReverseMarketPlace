@@ -29,13 +29,15 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
     {        
         private readonly IUnitOfWork _unitOfWork;
         private readonly CheckCategoryAttributesHandler _checkCategoryAttributesHandler;
+        private readonly CheckDuplicateDemandHandler _checkDuplicateDemandHandler;
 
         public CreateDemandHandler(            
-            IUnitOfWork unitOfWork, CheckCategoryAttributesHandler checkCategoryAttributesHandler, IStringLocalizer<CreateDemandHandler> localizer, 
+            IUnitOfWork unitOfWork, CheckCategoryAttributesHandler checkCategoryAttributesHandler, CheckDuplicateDemandHandler checkDuplicateDemandHandler, IStringLocalizer<CreateDemandHandler> localizer, 
             ILogger<CreateDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
         {
             _unitOfWork = unitOfWork;
             _checkCategoryAttributesHandler = checkCategoryAttributesHandler;
+            _checkDuplicateDemandHandler = checkDuplicateDemandHandler;
         }
 
         public async Task<CreateDemandResult> Handle(CreateDemandCommand request, CancellationToken cancellationToken)
@@ -60,16 +62,21 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
                 }                               
             }
 
+            var checkDuplicateDemandCommand = new CheckDuplicateDemandCommand(request.BuyerReference,
+                request.CategoryId, request.Quantity, request.Attributes);
+
+            var checkDuplicateDemandResult = await _checkDuplicateDemandHandler.Handle(checkDuplicateDemandCommand, CancellationToken.None);
+
             // The demand to be created
             var newDemand = new Demand(request.BuyerReference, category, request.Quantity);
 
             // We get all the demands for this buyer
-            var buyerDemands = await _unitOfWork.DemandsRepository.GetBuyerDemands(request.BuyerReference, d => d.Category, d => d.DemandAttributes);
+            //var buyerDemands = await _unitOfWork.DemandsRepository.GetBuyerDemands(request.BuyerReference, d => d.Category, d => d.DemandAttributes);
 
             // The user can not create a demand exactly like another previously created by himself
-            var duplicatedDemand = buyerDemands.FirstOrDefault( d => d.Equals(newDemand) );
-            if (!duplicatedDemand.IsNull())
-                return new CreateDemandResult(null, _mapper.Map<DemandDto>(duplicatedDemand));
+            //var duplicatedDemand = buyerDemands.FirstOrDefault( d => d.Equals(newDemand) );
+            if (!checkDuplicateDemandResult.Duplicated.IsNull())
+                return new CreateDemandResult(null, _mapper.Map<DemandDto>(checkDuplicateDemandResult.Duplicated));
             else
             {
                 await _unitOfWork.DemandsRepository.AddAsync(newDemand);
