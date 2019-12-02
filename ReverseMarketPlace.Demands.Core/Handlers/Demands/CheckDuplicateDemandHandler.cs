@@ -49,13 +49,15 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
 
                         for(int i=0; i < attributesIdSortedToCheck.Count(); i++)
                         {
-                            // If same attribute id
-                            if (attributesIdSortedToCheck.ElementAt(i) == attributesIdSortedToCompareWith.ElementAt(i))
+                            if (attributesIdSortedToCheck.ElementAt(i) != attributesIdSortedToCompareWith.ElementAt(i))
+                            {
+                                // Different attributes found, so is not duplicated, we continue with next demand
+                                break;
+                            }
+                            else
                             {
                                 // TODO: Compare value
                             }
-                            else
-                                break; // Different attributes found, so is not duplicated, we continue with next attribute
                         }                                                
                     }                    
                 }

@@ -1,35 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\manuel.berenguer\\source\\repos\\Microservices\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj": {}
+    "C:\\Users\\manue\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\manuel.berenguer\\source\\repos\\Microservices\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj": {
+    "C:\\Users\\manue\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\manuel.berenguer\\source\\repos\\Microservices\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
+        "projectUniqueName": "C:\\Users\\manue\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
         "projectName": "ReverseMarketPlace.Common",
-        "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\Microservices\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
-        "packagesPath": "C:\\Users\\manuel.berenguer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\manuel.berenguer\\source\\repos\\Microservices\\ReverseMarketPlace\\ReverseMarketPlace.Common\\obj\\",
+        "projectPath": "C:\\Users\\manue\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
+        "packagesPath": "C:\\Users\\manue\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\manue\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\manuel.berenguer\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.2.config",
+          "C:\\Users\\manue\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
-          "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://moneymas-nuget.azurewebsites.net/nuget": {}
         },
         "frameworks": {
           "netstandard2.1": {
@@ -44,40 +41,11 @@
       },
       "frameworks": {
         "netstandard2.1": {
-          "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "Microsoft.Extensions.Localization.Abstractions": {
-              "target": "Package",
-              "version": "[3.0.1, )"
-            },
-            "Microsoft.Extensions.Logging.Abstractions": {
-              "target": "Package",
-              "version": "[3.0.1, )"
-            },
-            "System.ComponentModel.Annotations": {
-              "target": "Package",
-              "version": "[4.6.0, )"
-            }
-          },
           "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
+            "net461"
           ],
           "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "NETStandard.Library": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "warn": true
         }
       }
     }

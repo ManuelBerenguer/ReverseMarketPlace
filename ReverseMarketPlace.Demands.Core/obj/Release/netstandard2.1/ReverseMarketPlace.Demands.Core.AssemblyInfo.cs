@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("ReversemarketPlace.Demands.Tests")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("ReverseMarketPlace.Demands.Core")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("ReversemarketPlace.Demands.Tests")]
-[assembly: System.Reflection.AssemblyTitleAttribute("ReversemarketPlace.Demands.Tests")]
+[assembly: System.Reflection.AssemblyProductAttribute("ReverseMarketPlace.Demands.Core")]
+[assembly: System.Reflection.AssemblyTitleAttribute("ReverseMarketPlace.Demands.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
