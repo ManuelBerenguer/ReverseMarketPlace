@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ReverseMarketPlace.Common.Types
 {
-    public abstract class BaseEntity : ValueObject, ITrackable, ISoftDelete
+    public abstract class BaseEntity : ITrackable, ISoftDelete
     {
         [Key]
         [IgnoreMember]

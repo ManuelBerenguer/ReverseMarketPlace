@@ -1,16 +1,12 @@
 ﻿using MediatR;
-using ReverseMarketPlace.Common.Messages;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
 {
-    /// <summary>
-    /// Command for creating a new demand. It stores all neccessary data to create the demand.
-    /// </summary>
-    public class CreateDemandCommand : IRequest<CreateDemandResult>
-    {        
+    public class CheckDuplicateDemandCommand : IRequest<bool>
+    {
         /// <summary>
         /// Reference of the buyer who is creating the demand
         /// </summary>
@@ -31,7 +27,7 @@ namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
         /// </summary>
         public IDictionary<int, object> Attributes { get; }
 
-        public CreateDemandCommand(string buyerReference, int categoryId, float quantity, IDictionary<int, object> attributes)
+        public CheckDuplicateDemandCommand(string buyerReference, int categoryId, float quantity, IDictionary<int, object> attributes)
         {
             BuyerReference = buyerReference;
             CategoryId = categoryId;
