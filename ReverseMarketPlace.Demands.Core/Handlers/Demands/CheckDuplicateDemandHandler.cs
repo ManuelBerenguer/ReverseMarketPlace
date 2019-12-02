@@ -29,7 +29,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
         /// </summary>
         /// <param name="request">Buyer reference and potential demand properties</param>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <returns>True if duplicated demand, false otherwise. </returns>
         public async Task<bool> Handle(CheckDuplicateDemandCommand request, CancellationToken cancellationToken)
         {
             // We get all the demands for the buyer
@@ -52,15 +52,16 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
                             // If same attribute id
                             if (attributesIdSortedToCheck.ElementAt(i) == attributesIdSortedToCompareWith.ElementAt(i))
                             {
+                                // TODO: Compare value
                             }
                             else
-                                return false;
+                                break; // Different attributes found, so is not duplicated, we continue with next attribute
                         }                                                
-                    }
+                    }                    
                 }
             }
 
-            return false;
+            return false; // Not duplicated demand
         }
     }
 }
