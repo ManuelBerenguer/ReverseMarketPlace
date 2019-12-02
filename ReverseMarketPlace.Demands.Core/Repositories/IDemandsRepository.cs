@@ -10,6 +10,6 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
 {
     public interface IDemandsRepository : IRepository<Demand>
     {
-        Task<IEnumerable<Demand>> GetBuyerDemands(string buyerReference, params Expression<Func<Demand, object>>[] includeExpressions);
+        Task<IEnumerable<Demand>> GetBuyerDemandsWithCategoryAndAttributes(string buyerReference);
     }
 }

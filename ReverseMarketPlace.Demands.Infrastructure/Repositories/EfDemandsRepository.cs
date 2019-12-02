@@ -25,5 +25,13 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
             return query != null ? await query.Where(d => d.BuyerReference.Equals(buyerReference)).ToListAsync() 
                 : await DbSet.Where(d => d.BuyerReference.Equals(buyerReference)).ToListAsync();
         }
+
+        public async Task<IEnumerable<Demand>> GetBuyerDemandsWithCategoryAndAttributes(string buyerReference)
+        {
+            return await _dbContext.Demands.Where(d => d.BuyerReference.Equals(buyerReference))
+                .Include(d => d.Category)
+                .Include(d => d.DemandAttributes).ThenInclude(da => da.Attribute)
+                .ToListAsync();
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
         public async Task<bool> Handle(CheckDuplicateDemandCommand request, CancellationToken cancellationToken)
         {
             // We get all the demands for the buyer
-            var buyerDemands = await _unitOfWork.DemandsRepository.GetBuyerDemands(request.BuyerReference, d => d.Category, d => d.DemandAttributes);
+            var buyerDemands = await _unitOfWork.DemandsRepository.GetBuyerDemandsWithCategoryAndAttributes(request.BuyerReference);
 
             // For each buyer's demand
             foreach(var demand in buyerDemands)
