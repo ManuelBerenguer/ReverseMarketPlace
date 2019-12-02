@@ -44,7 +44,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
                 throw new QuantityMustBeGreaterThanZeroException(_localizer[ExceptionConstants.QuantityMustBeGreaterThanZero]);
 
             // We get the category by id and if the category doesn't exist we throw exception
-            var category = request.Attributes.IsNotNull() ? await _unitOfWork.CategoriesRepository.GetByIdAsync(request.CategoryId, c => c.CategoryAttributes, c => c.CategoryAttributes.Select )
+            var category = request.Attributes.IsNotNull() ? await _unitOfWork.CategoriesRepository.GetByIdWithAttributes(request.CategoryId)
                 : await _unitOfWork.CategoriesRepository.GetByIdAsync(request.CategoryId);
             if (category.IsNull())
                 throw new CategoryNotFoundException(_localizer[ExceptionConstants.CategoryNotFound]);
@@ -57,12 +57,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
                 {
                     if(!categoryAttributesId.Contains(attributeId)) // If the attribute is not allowed for that category
                         throw new CategoryAttributeNotFoundException(_localizer[ExceptionConstants.CategoryAttributeNotFound]);
-                }
-
-                //CheckCategoryAttributesCommand checkCategoryAttributesCommand = new CheckCategoryAttributesCommand(request.Attributes.Keys, request.CategoryId);
-                //bool checkAttributesResult = await _checkCategoryAttributesHandler.Handle(checkCategoryAttributesCommand, CancellationToken.None);
-                //if (!checkAttributesResult)
-                //    throw new CategoryAttributeNotFoundException(_localizer[ExceptionConstants.CategoryAttributeNotFound]);
+                }                               
             }
 
             // The demand to be created
@@ -78,6 +73,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
             else
             {
                 await _unitOfWork.DemandsRepository.AddAsync(newDemand);
+                await _unitOfWork.SaveChangesAsync();
                 return new CreateDemandResult(_mapper.Map<DemandDto>(newDemand), null);
             }
         }       

@@ -32,6 +32,7 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         /// <summary>
         /// Attributes to detail more what the user wants
         /// </summary>
+        [IgnoreMember]
         public ICollection<DemandAttributes> DemandAttributes { get; private set; }
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         [IgnoreMember]
         public DemandStatusEnum Status { get; private set; } // Ignored in comparisons because of attribute
 
-        public Demand() { }
+        private Demand() { }
 
         public Demand(string buyerReference, Category category, float quantity)
         {
@@ -48,6 +49,16 @@ namespace ReverseMarketPlace.Demands.Core.Entities
             Category = category;
             Quantity = quantity;
             Status = DemandStatusEnum.Created; // Initially is on 'Created' status
+            DemandAttributes = new List<DemandAttributes>(); // Empty demand attributes
+        }
+
+        public Demand(string buyerReference, Category category, float quantity, ICollection<DemandAttributes> demandAttributes)
+        {
+            BuyerReference = buyerReference;
+            Category = category;
+            Quantity = quantity;
+            Status = DemandStatusEnum.Created; // Initially is on 'Created' status
+            DemandAttributes = demandAttributes;
         }
     }
 }

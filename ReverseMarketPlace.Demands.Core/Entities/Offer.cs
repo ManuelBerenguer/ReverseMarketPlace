@@ -11,6 +11,6 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         [Required]
         public float Price { get; private set; }
 
-        
+        private Offer() { }
     }
 }

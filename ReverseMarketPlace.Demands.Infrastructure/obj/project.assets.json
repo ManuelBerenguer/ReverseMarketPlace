@@ -6900,9 +6900,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\manuel.berenguer\\source\\repos\\Microservices\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\ReverseMarketPlace.Demands.Infrastructure.csproj",
-      "projectName": "ReverseMarketPlace.Demands.Infrastructure",
-      "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\Microservices\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\ReverseMarketPlace.Demands.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\manuel.berenguer\\source\\repos\\Microservices\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\ReverseMarketPlace.Demands.Infrastructure.Data.csproj",
+      "projectName": "ReverseMarketPlace.Demands.Infrastructure.Data",
+      "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\Microservices\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\ReverseMarketPlace.Demands.Infrastructure.Data.csproj",
       "packagesPath": "C:\\Users\\manuel.berenguer\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\manuel.berenguer\\source\\repos\\Microservices\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",

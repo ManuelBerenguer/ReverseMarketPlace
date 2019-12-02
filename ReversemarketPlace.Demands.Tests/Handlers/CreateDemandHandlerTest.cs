@@ -79,9 +79,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         public async Task UserCannotCreateDuplicatedDemand()
         {
             CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 1, 1, null);
-
-            IEnumerable<Demand> buyerDemands = await _unitOfWork.DemandsRepository.GetBuyerDemands(createDemandCommand.BuyerReference);
-            
+                                    
             var createDemandResult = await _createDemandHandler.Handle(createDemandCommand, CancellationToken.None);
 
             Assert.IsType<CreateDemandResult>(createDemandResult);
@@ -94,9 +92,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         public async Task UserCanCreateNotDuplicatedDemand()
         {
             CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 4, 5, null);
-
-            IEnumerable<Demand> buyerDemands = await _unitOfWork.DemandsRepository.GetBuyerDemands(createDemandCommand.BuyerReference);
-
+                        
             var createDemandResult = await _createDemandHandler.Handle(createDemandCommand, CancellationToken.None);
 
             Assert.IsType<CreateDemandResult>(createDemandResult);
@@ -108,7 +104,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         [Fact]
         public async Task DemandWithAttributeNotBelongingCategoryThrowsException()
         {
-            const int attributeInchesId = 1;
+            const int attributeInchesId = 100;
             var attributes = new Dictionary<int, object>() {
                 { attributeInchesId, 55 } // 55 inches
             };

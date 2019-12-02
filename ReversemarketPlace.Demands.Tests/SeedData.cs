@@ -48,9 +48,12 @@ namespace ReversemarketPlace.Demands.Tests
 
         private async static void AddCategoryAttributes(AppDbContext dbContext)
         {
+            var categoryTelevisions = await dbContext.Categories.FindAsync(4);
+            var inchesAttribute = await dbContext.Attributes.FindAsync(1);
+
             var categoryAttribute = new CategoryAttributes(
-                await dbContext.Categories.FindAsync(4),
-                await dbContext.Attributes.FindAsync(1)
+                categoryTelevisions,
+                inchesAttribute    
             );
 
             await dbContext.CategoryAttributes.AddAsync(categoryAttribute);

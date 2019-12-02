@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReverseMarketPlace.Demands.Infrastructure.Repositories
+namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
 {
     public class EfRepository<T> : IRepository<T> where T : BaseEntity
     {

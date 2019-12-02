@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReverseMarketPlace.Demands.Infrastructure.Repositories
+namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
 {
     public class EfUnitOfWork : IUnitOfWork
     {

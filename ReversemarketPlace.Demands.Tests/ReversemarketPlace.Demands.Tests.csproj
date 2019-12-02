@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ReverseMarketPlace.Demands.Core\ReverseMarketPlace.Demands.Core.csproj" />
-    <ProjectReference Include="..\ReverseMarketPlace.Demands.Infrastructure\ReverseMarketPlace.Demands.Infrastructure.csproj" />
+    <ProjectReference Include="..\ReverseMarketPlace.Demands.Infrastructure\ReverseMarketPlace.Demands.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,8 +18,8 @@ namespace ReverseMarketPlace.Demands.Core.Entities
 
         public CategoryAttributes(Category c, Attribute att)
         {
-            this.Category = c;
-            this.Attribute = Attribute;
+            Category = c;
+            Attribute = att;
         }
     }
 }

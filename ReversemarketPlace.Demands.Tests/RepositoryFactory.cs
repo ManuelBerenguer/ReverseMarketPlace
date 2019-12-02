@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using ReverseMarketPlace.Demands.Core.Entities;
 using ReverseMarketPlace.Demands.Infrastructure.Data;
-using ReverseMarketPlace.Demands.Infrastructure.Repositories;
+using ReverseMarketPlace.Demands.Infrastructure.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -61,7 +61,7 @@ namespace ReversemarketPlace.Demands.Tests
             // Create a new options instance telling the context to use an
             // InMemory database and the new service provider.
             var builder = new DbContextOptionsBuilder<AppDbContext>();
-            builder.UseInMemoryDatabase("TestDataBase")
+            builder.UseInMemoryDatabase(Guid.NewGuid().ToString()) // We generate a GUID to use as a name for the database. This is to ensure that every TestContext run has new database that is not affected by other test runs.
                    .UseInternalServiceProvider(serviceProvider);
 
             return builder.Options;

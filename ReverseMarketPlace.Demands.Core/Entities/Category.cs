@@ -13,10 +13,26 @@ namespace ReverseMarketPlace.Demands.Core.Entities
 
         public Category UpperCategory { get; private set; }
 
+        public ICollection<Category> SubCategories { get; private set; }
+
         public ICollection<CategoryAttributes> CategoryAttributes { get; private set; }
 
-        public Category() { }
+        private Category() { }
 
+        /// <summary>
+        /// Constructor to set the name of a Category without upper category
+        /// </summary>
+        /// <param name="name">The name of the category</param>
+        public Category(string name)
+        {
+            Name = name;
+        }
+
+        /// <summary>
+        /// Constructor to create a new Category with name and upper category
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="upperCategory"></param>
         public Category(string name, Category upperCategory)
         {
             Name = name;

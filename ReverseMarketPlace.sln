@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseMarketPlace.Common", "ReverseMarketPlace.Common\ReverseMarketPlace.Common.csproj", "{65FEE606-536C-4FE6-9D24-F6D54780F970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReverseMarketPlace.Common", "ReverseMarketPlace.Common\ReverseMarketPlace.Common.csproj", "{65FEE606-536C-4FE6-9D24-F6D54780F970}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demands", "Demands", "{5FA25112-1DB0-44B9-BDE5-7499A305E527}"
 EndProject
@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{62105167-3A2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1D1EE68F-2155-498E-8217-321B3B4204D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseMarketPlace.Demands.Core", "ReverseMarketPlace.Demands.Core\ReverseMarketPlace.Demands.Core.csproj", "{F33FE8A7-7E0F-43E6-B572-2DF795129F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReverseMarketPlace.Demands.Core", "ReverseMarketPlace.Demands.Core\ReverseMarketPlace.Demands.Core.csproj", "{F33FE8A7-7E0F-43E6-B572-2DF795129F85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseMarketPlace.Demands.Infrastructure", "ReverseMarketPlace.Demands.Infrastructure\ReverseMarketPlace.Demands.Infrastructure.csproj", "{26E36295-F44D-4FF1-994B-893FD44B22AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReverseMarketPlace.Demands.Infrastructure.Data", "ReverseMarketPlace.Demands.Infrastructure\ReverseMarketPlace.Demands.Infrastructure.Data.csproj", "{26E36295-F44D-4FF1-994B-893FD44B22AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReversemarketPlace.Demands.Tests", "ReversemarketPlace.Demands.Tests\ReversemarketPlace.Demands.Tests.csproj", "{255D6938-A743-4BD5-89BB-8EFCE751906A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReversemarketPlace.Demands.Tests", "ReversemarketPlace.Demands.Tests\ReversemarketPlace.Demands.Tests.csproj", "{255D6938-A743-4BD5-89BB-8EFCE751906A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
