@@ -8,6 +8,6 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
 {
     public interface ICategoriesRepository : IRepository<Category>
     {
-        
+        Task<Category> GetByIdWithAttributes(int categoryId);
     }
 }
