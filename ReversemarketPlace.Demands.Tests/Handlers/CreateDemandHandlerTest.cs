@@ -6,11 +6,11 @@ using ReversemarketPlace.Demands.Tests.TestData;
 using ReverseMarketPlace.Demands.Core.Dtos;
 using ReverseMarketPlace.Demands.Core.Entities;
 using ReverseMarketPlace.Demands.Core.Exceptions;
-using ReverseMarketPlace.Demands.Core.Handlers.CategoryAttributes;
 using ReverseMarketPlace.Demands.Core.Handlers.Demands;
 using ReverseMarketPlace.Demands.Core.Mappers;
 using ReverseMarketPlace.Demands.Core.Messages.Commands.Demands;
 using ReverseMarketPlace.Demands.Core.Repositories;
+using ReverseMarketPlace.Demands.Core.UseCases.Category;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,16 +27,14 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
 
         private readonly Mock<IStringLocalizer<CreateDemandHandler>> _localizerCreateDemand;
         private readonly Mock<ILogger<CreateDemandHandler>> _loggerCreateDemand;
-
-        private readonly Mock<IStringLocalizer<CheckCategoryAttributesHandler>> _localizerCategoryAttributes;
-        private readonly Mock<ILogger<CheckCategoryAttributesHandler>> _loggerCategoryAttributes;
-
+             
         private readonly Mock<IStringLocalizer<CheckDuplicateDemandHandler>> _localizerDuplicateDemand;
         private readonly Mock<ILogger<CheckDuplicateDemandHandler>> _loggerDuplicateDemand;
 
-        private readonly CreateDemandHandler _createDemandHandler;
-        private readonly CheckCategoryAttributesHandler _checkCategoryAttributesHandler;
+        private readonly CreateDemandHandler _createDemandHandler;        
         private readonly CheckDuplicateDemandHandler _checkDuplicateDemandHandler;
+
+        private readonly IAttributesBelongToCategoryUseCase _attributesBelongToCategoryUseCase;
 
         private readonly IMapper _mapper;
 
@@ -46,20 +44,20 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
                         
             _localizerCreateDemand = new Mock<IStringLocalizer<CreateDemandHandler>>();
             _loggerCreateDemand = new Mock<ILogger<CreateDemandHandler>>();
-            _localizerCategoryAttributes = new Mock<IStringLocalizer<CheckCategoryAttributesHandler>>();
-            _loggerCategoryAttributes = new Mock<ILogger<CheckCategoryAttributesHandler>>();
+            
             _localizerDuplicateDemand = new Mock<IStringLocalizer<CheckDuplicateDemandHandler>>();
             _loggerDuplicateDemand = new Mock<ILogger<CheckDuplicateDemandHandler>>();
+
+            _attributesBelongToCategoryUseCase = new AttributesBelongToCategoryUseCase();
 
             // We create an instance of the autoMapper
             var mockMapper = new MapperConfiguration(cfg => {
                 cfg.AddProfile(new MappingProfile());
             });
             _mapper = mockMapper.CreateMapper();
-
-            _checkCategoryAttributesHandler = new CheckCategoryAttributesHandler(_unitOfWork, _localizerCategoryAttributes.Object, _loggerCategoryAttributes.Object, _mapper);
+                        
             _checkDuplicateDemandHandler = new CheckDuplicateDemandHandler(_unitOfWork, _localizerDuplicateDemand.Object, _loggerDuplicateDemand.Object, _mapper);
-            _createDemandHandler = new CreateDemandHandler(_unitOfWork, _checkCategoryAttributesHandler, _checkDuplicateDemandHandler, _localizerCreateDemand.Object, _loggerCreateDemand.Object, _mapper);
+            _createDemandHandler = new CreateDemandHandler(_unitOfWork, _attributesBelongToCategoryUseCase, _checkDuplicateDemandHandler, _localizerCreateDemand.Object, _loggerCreateDemand.Object, _mapper);
         }
 
         [Fact]

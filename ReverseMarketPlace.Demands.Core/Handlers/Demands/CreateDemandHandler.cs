@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using ReverseMarketPlace.Common.Extensions;
@@ -9,14 +8,10 @@ using ReverseMarketPlace.Demands.Core.Constants;
 using ReverseMarketPlace.Demands.Core.Dtos;
 using ReverseMarketPlace.Demands.Core.Entities;
 using ReverseMarketPlace.Demands.Core.Exceptions;
-using ReverseMarketPlace.Demands.Core.Handlers.CategoryAttributes;
-using ReverseMarketPlace.Demands.Core.Messages.Commands.CategoryAttributes;
 using ReverseMarketPlace.Demands.Core.Messages.Commands.Demands;
 using ReverseMarketPlace.Demands.Core.Repositories;
-using System;
-using System.Collections.Generic;
+using ReverseMarketPlace.Demands.Core.UseCases.Category;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,16 +22,16 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
     /// </summary>
     public sealed class CreateDemandHandler : BaseCommandHandler<CreateDemandHandler>, IRequestHandler<CreateDemandCommand, CreateDemandResult>
     {        
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly CheckCategoryAttributesHandler _checkCategoryAttributesHandler;
+        private readonly IUnitOfWork _unitOfWork;        
+        private readonly IAttributesBelongToCategoryUseCase _attributesBelongToCategoryUseCase;
         private readonly CheckDuplicateDemandHandler _checkDuplicateDemandHandler;
 
         public CreateDemandHandler(            
-            IUnitOfWork unitOfWork, CheckCategoryAttributesHandler checkCategoryAttributesHandler, CheckDuplicateDemandHandler checkDuplicateDemandHandler, IStringLocalizer<CreateDemandHandler> localizer, 
+            IUnitOfWork unitOfWork, IAttributesBelongToCategoryUseCase attributesBelongToCategoryUseCase, CheckDuplicateDemandHandler checkDuplicateDemandHandler, IStringLocalizer<CreateDemandHandler> localizer, 
             ILogger<CreateDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
         {
-            _unitOfWork = unitOfWork;
-            _checkCategoryAttributesHandler = checkCategoryAttributesHandler;
+            _unitOfWork = unitOfWork;            
+            _attributesBelongToCategoryUseCase = attributesBelongToCategoryUseCase;
             _checkDuplicateDemandHandler = checkDuplicateDemandHandler;
         }
 
@@ -54,12 +49,9 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
             // We check if the attributes added to the demand belongs to the category
             if (request.Attributes.IsNotNull())
             {
-                var categoryAttributesId = category.CategoryAttributes.Select(catAttr => catAttr.Attribute.Id);
-                foreach (var attributeId in request.Attributes.Keys)
-                {
-                    if(!categoryAttributesId.Contains(attributeId)) // If the attribute is not allowed for that category
-                        throw new CategoryAttributeNotFoundException(_localizer[ExceptionConstants.CategoryAttributeNotFound]);
-                }                               
+                bool allAttributesBelongCategory = await _attributesBelongToCategoryUseCase.ExecuteAsync(category, request.Attributes.Keys);
+                if(!allAttributesBelongCategory)
+                    throw new CategoryAttributeNotFoundException(_localizer[ExceptionConstants.CategoryAttributeNotFound]);                                               
             }
 
             var checkDuplicateDemandCommand = new CheckDuplicateDemandCommand(request.BuyerReference,

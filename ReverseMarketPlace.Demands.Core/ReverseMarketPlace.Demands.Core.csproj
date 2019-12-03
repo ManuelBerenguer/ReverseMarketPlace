@@ -16,4 +16,10 @@
     <ProjectReference Include="..\ReverseMarketPlace.Common\ReverseMarketPlace.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\CategoryAttributes\" />
+    <Folder Include="Messages\Commands\CategoryAttributes\" />
+    <Folder Include="UseCases\Demands\" />
+  </ItemGroup>
+
 </Project>
