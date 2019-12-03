@@ -56,7 +56,7 @@ namespace ReverseMarketPlace.Demands.Core.Entities
                     StringValue = (string)value; // TODO: Handle cast exception
                     break;
                 case Enums.Demands.AttributeDataTypeEnum.NumericValue:
-                    NumericValue = (double)value; // TODO: Handle cast exception
+                    NumericValue = Convert.ToDouble(value); // TODO: Handle cast exception
                     break;
                 case Enums.Demands.AttributeDataTypeEnum.DateValue:
                     DateValue = (DateTime)value; // TODO: Handle cast exception

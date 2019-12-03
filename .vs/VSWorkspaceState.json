@@ -4,6 +4,9 @@
     "\\ReverseMarketPlace.Demands.Core",
     "\\ReverseMarketPlace.Demands.Core\\Handlers",
     "\\ReverseMarketPlace.Demands.Core\\Handlers\\Demands",
+    "\\ReverseMarketPlace.Demands.Core\\Messages",
+    "\\ReverseMarketPlace.Demands.Core\\Messages\\Commands",
+    "\\ReverseMarketPlace.Demands.Core\\Messages\\Commands\\Demands",
     "\\ReversemarketPlace.Demands.Tests"
   ],
   "SelectedNode": "\\ReverseMarketPlace.sln",

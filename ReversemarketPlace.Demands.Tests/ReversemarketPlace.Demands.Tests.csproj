@@ -21,4 +21,8 @@
     <ProjectReference Include="..\ReverseMarketPlace.Demands.Infrastructure\ReverseMarketPlace.Demands.Infrastructure.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Fixtures\" />
+  </ItemGroup>
+
 </Project>

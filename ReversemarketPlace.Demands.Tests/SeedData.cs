@@ -22,6 +22,19 @@ namespace ReversemarketPlace.Demands.Tests
             await dbContext.SaveChangesAsync();
         }
 
+        public async static void PopulateDemandCategory4WithInchesAttribute(AppDbContext dbContext)
+        {
+            var category4 = await dbContext.Categories.FindAsync(4);
+            var inchesAttribute = await dbContext.Attributes.FindAsync(1);
+            
+            var demandWithAttributes = await dbContext.Demands.AddAsync( new Demand("111", category4, 5) );
+
+            var demandAttribute = new DemandAttributes(demandWithAttributes.Entity, inchesAttribute, 55);
+            await dbContext.DemandAttributes.AddAsync(demandAttribute);
+
+            await dbContext.SaveChangesAsync();
+        }
+
         private async static void AddCategories(AppDbContext dbContext)
         {
             var category1 = await dbContext.Categories.AddAsync(new Category(Constants.CATEGORY_TV_AND_AUDIO, null));

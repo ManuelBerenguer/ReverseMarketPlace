@@ -19,9 +19,10 @@ using Xunit;
 
 namespace ReversemarketPlace.Demands.Tests.Handlers
 {
-    [Collection("Repository Collection")]
-    public class FindGroupsForDemandHandlerTest
+    //[Collection("Repository Collection")]
+    public class FindGroupsForDemandHandlerTest : IClassFixture<RepositoryFactory>
     {
+        private readonly RepositoryFactory _repositoryFactory;
         private readonly IUnitOfWork _unitOfWork;
         private readonly FindGroupsForDemandHandler _findGroupsForDemandHandler;
 
@@ -29,9 +30,10 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         private readonly Mock<ILogger<FindGroupsForDemandHandler>> _logger;
         private readonly IMapper _mapper;
 
-        public FindGroupsForDemandHandlerTest()
+        public FindGroupsForDemandHandlerTest(RepositoryFactory repositoryFactory)
         {
-            _unitOfWork = RepositoryFactory.GetUnitOfWork();
+            _repositoryFactory = repositoryFactory;
+            _unitOfWork = _repositoryFactory.GetUnitOfWork();
 
             _localizer = new Mock<IStringLocalizer<FindGroupsForDemandHandler>>();
             _logger = new Mock<ILogger<FindGroupsForDemandHandler>>();
@@ -46,7 +48,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         }
 
         [Fact]
-        public async Task NotFoundDemandThrowsException()
+        public async Task T001_NotFoundDemandThrowsException()
         {
             FindGroupsForDemandCommand findGroupsForDemandCommand = new FindGroupsForDemandCommand(100000);
 
@@ -58,7 +60,9 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         [Fact]
         public async Task NewGroupCreatedForDemandWithCategoryWithoutGroups()
         {
-            FindGroupsForDemandCommand findGroupsForDemandCommand = new FindGroupsForDemandCommand(4); // The demand with the id 4 is the only one created on Demands tests
+            SeedData.PopulateDemandCategory4WithInchesAttribute(_repositoryFactory.GetDbContext());
+
+            FindGroupsForDemandCommand findGroupsForDemandCommand = new FindGroupsForDemandCommand(4);
 
             var findGroupsForDemandResult = await _findGroupsForDemandHandler.Handle(findGroupsForDemandCommand, CancellationToken.None);
 

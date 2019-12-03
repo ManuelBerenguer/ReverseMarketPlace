@@ -16,6 +16,7 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data
         public DbSet<Attribute> Attributes { get; set; }
         public DbSet<CategoryAttributes> CategoryAttributes { get; set; }
         public DbSet<DemandsGroup> DemandsGroups { get; set; }
+        public DbSet<DemandAttributes> DemandAttributes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,8 +32,14 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data
             modelBuilder.Entity<CategoryAttributes>()
                 .HasOne(ca => ca.Attribute)
                 .WithMany();
-                
-                //.WithMany(a => a.CategoryAttributes).HasForeignKey("AttributeId") // Shadow property;                
+                        
+            // DemandAttributes
+            modelBuilder.Entity<DemandAttributes>()
+                .HasOne(da => da.Demand)
+                .WithMany(d => d.DemandAttributes);
+            modelBuilder.Entity<DemandAttributes>()
+                .HasOne(da => da.Attribute)
+                .WithMany(a => a.DemandAttributes);
         }
     }
 }

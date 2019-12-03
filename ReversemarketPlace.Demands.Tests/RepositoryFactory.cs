@@ -10,12 +10,12 @@ using Xunit;
 
 namespace ReversemarketPlace.Demands.Tests
 {
-    public class RepositoryFactory
+    public class RepositoryFactory : IDisposable
     {
         /// <summary>
         /// The database context
         /// </summary>
-        private static AppDbContext _dbContext;
+        private AppDbContext _dbContext;
 
         public RepositoryFactory()
         {
@@ -24,33 +24,24 @@ namespace ReversemarketPlace.Demands.Tests
 
             // We populate context with some test data
             SeedData.PopulateTestData(_dbContext);
-        }
+        }        
 
-        public static void CreateNewContext()
+        public void Dispose()
         {
-            var options = CreateNewContextOptions();
-            _dbContext = new AppDbContext(options);
-
-            // We populate context with some test data
-            SeedData.PopulateTestData(_dbContext);
+            //_dbContext.Dispose();
         }
-                
-        public static EfUnitOfWork GetUnitOfWork()
+                                
+        public EfUnitOfWork GetUnitOfWork()
         {
             return new EfUnitOfWork(_dbContext);
         }
 
-        public static EfRepository<Category> GetCategoryRepository()
+        public AppDbContext GetDbContext()
         {
-            return new EfRepository<Category>(_dbContext);
+            return _dbContext;
         }
-
-        public static EfDemandsRepository GetDemandsRepository()
-        {
-            return new EfDemandsRepository(_dbContext);
-        }
-
-        private static DbContextOptions<AppDbContext> CreateNewContextOptions()
+                
+        private DbContextOptions<AppDbContext> CreateNewContextOptions()
         {
             // Create a fresh service provider, and therefore a fresh
             // InMemory database instance.

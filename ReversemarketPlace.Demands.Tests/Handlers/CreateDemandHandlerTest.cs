@@ -20,11 +20,11 @@ using Xunit;
 
 namespace ReversemarketPlace.Demands.Tests.Handlers
 {
-    [Collection("Repository Collection")]
-    public class CreateDemandHandlerTest
+    //[Collection("Repository Collection")]
+    public class CreateDemandHandlerTest : IClassFixture<RepositoryFactory>
     {
-        private readonly IUnitOfWork _unitOfWork;
-
+        private RepositoryFactory _repositoryFactory;
+        
         private readonly Mock<IStringLocalizer<CreateDemandHandler>> _localizerCreateDemand;
         private readonly Mock<ILogger<CreateDemandHandler>> _loggerCreateDemand;
              
@@ -38,10 +38,10 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
 
         private readonly IMapper _mapper;
 
-        public CreateDemandHandlerTest()
-        {            
-            _unitOfWork = RepositoryFactory.GetUnitOfWork();
-                        
+        public CreateDemandHandlerTest(RepositoryFactory repositoryFactory)
+        {
+            _repositoryFactory = repositoryFactory;
+                                    
             _localizerCreateDemand = new Mock<IStringLocalizer<CreateDemandHandler>>();
             _loggerCreateDemand = new Mock<ILogger<CreateDemandHandler>>();
             
@@ -56,12 +56,12 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
             });
             _mapper = mockMapper.CreateMapper();
                         
-            _checkDuplicateDemandHandler = new CheckDuplicateDemandHandler(_unitOfWork, _localizerDuplicateDemand.Object, _loggerDuplicateDemand.Object, _mapper);
-            _createDemandHandler = new CreateDemandHandler(_unitOfWork, _attributesBelongToCategoryUseCase, _checkDuplicateDemandHandler, _localizerCreateDemand.Object, _loggerCreateDemand.Object, _mapper);
+            _checkDuplicateDemandHandler = new CheckDuplicateDemandHandler(_repositoryFactory.GetUnitOfWork(), _localizerDuplicateDemand.Object, _loggerDuplicateDemand.Object, _mapper);
+            _createDemandHandler = new CreateDemandHandler(_repositoryFactory.GetUnitOfWork(), _attributesBelongToCategoryUseCase, _checkDuplicateDemandHandler, _localizerCreateDemand.Object, _loggerCreateDemand.Object, _mapper);
         }
 
         [Fact]
-        public async Task CreateDemandWithNonPositiveQuantityThrowsException()
+        public async Task T001_CreateDemandWithNonPositiveQuantityThrowsException()
         {
             CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 1, 0, null);
 
@@ -71,7 +71,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         }
 
         [Fact]
-        public async Task CreateDemandWithUnknownCategoryThrowsException()
+        public async Task T002_CreateDemandWithUnknownCategoryThrowsException()
         {
             CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 1000000000, 1, null);
                         
@@ -81,7 +81,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         }
 
         [Fact]
-        public async Task UserCanNotCreateDuplicatedDemandWithoutAttributes()
+        public async Task T003_UserCanNotCreateDuplicatedDemandWithoutAttributes()
         {
             // identical demand was created through SeedData.cs
             CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 1, 1, new Dictionary<int, object>());
@@ -91,11 +91,11 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
             Assert.IsType<CreateDemandResult>(createDemandResult);
             Assert.Null(createDemandResult.Created);
             Assert.NotNull(createDemandResult.Duplicated);
-            Assert.Equal(createDemandResult.Duplicated, _mapper.Map<DemandDto>(await _unitOfWork.DemandsRepository.GetByIdAsync(1)));
+            Assert.Equal(createDemandResult.Duplicated, _mapper.Map<DemandDto>(await _repositoryFactory.GetUnitOfWork().DemandsRepository.GetByIdAsync(1)));
         }
 
         [Fact]
-        public async Task UserCanCreateNotDuplicatedDemand()
+        public async Task T004_UserCanCreateNotDuplicatedDemand()
         {
             CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 4, 5, null);
                         
@@ -108,7 +108,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         }
 
         [Fact]
-        public async Task DemandWithAttributeNotBelongingCategoryThrowsException()
+        public async Task T005_DemandWithAttributeNotBelongingCategoryThrowsException()
         {
             const int unknownAttributeId = 100; // Attribute that doesn't exist
             var attributes = new Dictionary<int, object>() {
@@ -123,7 +123,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         }
 
         [Fact]
-        public async Task CanCreateNotDuplicatedDemandWithAttributes()
+        public async Task T006_CanCreateNotDuplicatedDemandWithAttributes()
         {
             const int inchesAttributeId = 1; // Existing attribute for category 4
             var attributes = new Dictionary<int, object>() {
