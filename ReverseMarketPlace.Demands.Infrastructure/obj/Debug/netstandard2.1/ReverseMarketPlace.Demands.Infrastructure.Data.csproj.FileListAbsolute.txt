@@ -25,3 +25,16 @@ C:\Users\manue\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infras
 C:\Users\manue\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\obj\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.csproj.CopyComplete
 C:\Users\manue\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\obj\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.dll
 C:\Users\manue\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\obj\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.pdb
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\bin\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.deps.json
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\bin\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.dll
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\bin\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.pdb
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\bin\Debug\netstandard2.1\ReverseMarketPlace.Common.dll
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\bin\Debug\netstandard2.1\ReverseMarketPlace.Demands.Core.dll
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\bin\Debug\netstandard2.1\ReverseMarketPlace.Demands.Core.pdb
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\bin\Debug\netstandard2.1\ReverseMarketPlace.Common.pdb
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\obj\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.csprojAssemblyReference.cache
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\obj\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.AssemblyInfoInputs.cache
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\obj\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.AssemblyInfo.cs
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\obj\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.csproj.CopyComplete
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\obj\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.dll
+C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Demands.Infrastructure\obj\Debug\netstandard2.1\ReverseMarketPlace.Demands.Infrastructure.Data.pdb

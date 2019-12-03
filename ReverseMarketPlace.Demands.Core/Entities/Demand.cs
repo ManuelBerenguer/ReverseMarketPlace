@@ -1,8 +1,10 @@
-﻿using ReverseMarketPlace.Common.Types;
+﻿using ReverseMarketPlace.Common.Extensions;
+using ReverseMarketPlace.Common.Types;
 using ReverseMarketPlace.Demands.Core.Enums.Demands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 
 namespace ReverseMarketPlace.Demands.Core.Entities
@@ -46,7 +48,7 @@ namespace ReverseMarketPlace.Demands.Core.Entities
             Category = category;
             Quantity = quantity;
             Status = DemandStatusEnum.Created; // Initially is on 'Created' status
-            DemandAttributes = new List<DemandAttributes>(); // Empty demand attributes
+            DemandAttributes = new List<DemandAttributes>();
         }
 
         public Demand(string buyerReference, Category category, float quantity, ICollection<DemandAttributes> demandAttributes)
@@ -55,7 +57,18 @@ namespace ReverseMarketPlace.Demands.Core.Entities
             Category = category;
             Quantity = quantity;
             Status = DemandStatusEnum.Created; // Initially is on 'Created' status
-            DemandAttributes = demandAttributes;
+            DemandAttributes = demandAttributes.IsNull() ? new List<DemandAttributes>() : demandAttributes;
         }
+
+        public void AddAttribute(Attribute attribute, object value)
+        {
+            if (attribute.IsNull())
+                throw new ArgumentNullException(nameof(attribute));
+
+            if(value.IsNull())
+                throw new ArgumentNullException(nameof(value));
+
+            DemandAttributes.Add( new Entities.DemandAttributes(this, attribute, value) );        
+        }                
     }
 }

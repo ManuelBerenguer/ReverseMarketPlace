@@ -36,9 +36,9 @@ namespace ReversemarketPlace.Demands.Tests
             var category2 = await dbContext.Categories.FindAsync(2);
             var category3 = await dbContext.Categories.FindAsync(3);
             
-            await dbContext.Demands.AddAsync(new Demand("111", category1, 1));
-            await dbContext.Demands.AddAsync(new Demand("111", category2, 3));
-            await dbContext.Demands.AddAsync(new Demand("111", category3, 5));
+            await dbContext.Demands.AddAsync(new Demand("111", category1, 1, null));
+            await dbContext.Demands.AddAsync(new Demand("111", category2, 3, null));
+            await dbContext.Demands.AddAsync(new Demand("111", category3, 5, null));
         }
 
         private async static void AddAttributes(AppDbContext dbContext)

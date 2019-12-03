@@ -31,6 +31,9 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         private readonly Mock<IStringLocalizer<CheckCategoryAttributesHandler>> _localizerCategoryAttributes;
         private readonly Mock<ILogger<CheckCategoryAttributesHandler>> _loggerCategoryAttributes;
 
+        private readonly Mock<IStringLocalizer<CheckDuplicateDemandHandler>> _localizerDuplicateDemand;
+        private readonly Mock<ILogger<CheckDuplicateDemandHandler>> _loggerDuplicateDemand;
+
         private readonly CreateDemandHandler _createDemandHandler;
         private readonly CheckCategoryAttributesHandler _checkCategoryAttributesHandler;
         private readonly CheckDuplicateDemandHandler _checkDuplicateDemandHandler;
@@ -45,6 +48,8 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
             _loggerCreateDemand = new Mock<ILogger<CreateDemandHandler>>();
             _localizerCategoryAttributes = new Mock<IStringLocalizer<CheckCategoryAttributesHandler>>();
             _loggerCategoryAttributes = new Mock<ILogger<CheckCategoryAttributesHandler>>();
+            _localizerDuplicateDemand = new Mock<IStringLocalizer<CheckDuplicateDemandHandler>>();
+            _loggerDuplicateDemand = new Mock<ILogger<CheckDuplicateDemandHandler>>();
 
             // We create an instance of the autoMapper
             var mockMapper = new MapperConfiguration(cfg => {
@@ -53,8 +58,8 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
             _mapper = mockMapper.CreateMapper();
 
             _checkCategoryAttributesHandler = new CheckCategoryAttributesHandler(_unitOfWork, _localizerCategoryAttributes.Object, _loggerCategoryAttributes.Object, _mapper);
-            _checkDuplicateDemandHandler = new CheckDuplicateDemandHandler(_unitOfWork, _locali)
-            _createDemandHandler = new CreateDemandHandler(_unitOfWork, _checkCategoryAttributesHandler, _localizerCreateDemand.Object, _loggerCreateDemand.Object, _mapper);
+            _checkDuplicateDemandHandler = new CheckDuplicateDemandHandler(_unitOfWork, _localizerDuplicateDemand.Object, _loggerDuplicateDemand.Object, _mapper);
+            _createDemandHandler = new CreateDemandHandler(_unitOfWork, _checkCategoryAttributesHandler, _checkDuplicateDemandHandler, _localizerCreateDemand.Object, _loggerCreateDemand.Object, _mapper);
         }
 
         [Fact]
@@ -78,9 +83,10 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         }
 
         [Fact]
-        public async Task UserCannotCreateDuplicatedDemand()
+        public async Task UserCanNotCreateDuplicatedDemandWithoutAttributes()
         {
-            CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 1, 1, null);
+            // identical demand was created through SeedData.cs
+            CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 1, 1, new Dictionary<int, object>());
                                     
             var createDemandResult = await _createDemandHandler.Handle(createDemandCommand, CancellationToken.None);
 
@@ -106,9 +112,9 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         [Fact]
         public async Task DemandWithAttributeNotBelongingCategoryThrowsException()
         {
-            const int attributeInchesId = 100;
+            const int unknownAttributeId = 100; // Attribute that doesn't exist
             var attributes = new Dictionary<int, object>() {
-                { attributeInchesId, 55 } // 55 inches
+                { unknownAttributeId, 55 } // fictional value of 55 
             };
 
             CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 4, 5, attributes);
@@ -116,6 +122,25 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
             await Assert.ThrowsAsync<CategoryAttributeNotFoundException>(
                 () => _createDemandHandler.Handle(createDemandCommand, CancellationToken.None)
             );
+        }
+
+        [Fact]
+        public async Task CanCreateNotDuplicatedDemandWithAttributes()
+        {
+            const int inchesAttributeId = 1; // Existing attribute for category 4
+            var attributes = new Dictionary<int, object>() {
+                { inchesAttributeId, Convert.ToDouble( 55 ) } // 55 inches 
+            };
+
+            // There is already a category 4 demand created in a previous test but without attributes
+            CreateDemandCommand createDemandCommand = new CreateDemandCommand("111", 4, 5, attributes);
+
+            var createDemandResult = await _createDemandHandler.Handle(createDemandCommand, CancellationToken.None);
+
+            Assert.IsType<CreateDemandResult>(createDemandResult);
+            Assert.Null(createDemandResult.Duplicated);
+            Assert.NotNull(createDemandResult.Created);
+            Assert.Equal(createDemandResult.Created, _mapper.Map<DemandDto>(TestDemandFactory.FiveUnitsOfCategory4Buyer111()));
         }
     }
 }

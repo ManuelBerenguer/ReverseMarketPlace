@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using ReverseMarketPlace.Common.Extensions;
 using ReverseMarketPlace.Common.Handlers;
 using ReverseMarketPlace.Demands.Core.Dtos;
 using ReverseMarketPlace.Demands.Core.Messages.Commands.Demands;
@@ -42,31 +43,41 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
                 // If both demands correspond to the same category
                 if(demand.Category.Id == request.CategoryId)
                 {
-                    // We check the attributes length of both demands
-                    if(request.Attributes.Count == demand.DemandAttributes.Count)
+                    // Both attribute collections are not null
+                    if(request.Attributes.IsNotNull() && demand.DemandAttributes.IsNotNull())
                     {
-                        var attributesIdSortedToCheck = request.Attributes.Keys.OrderBy(key => key);
-                        var attributesIdSortedToCompareWith = demand.DemandAttributes.Select(attr => attr.Attribute.Id);
-
-                        for(int i=0; i < attributesIdSortedToCheck.Count(); i++)
+                        // We check the attributes length of both demands
+                        if (request.Attributes.Count == demand.DemandAttributes.Count)
                         {
-                            if (attributesIdSortedToCheck.ElementAt(i) != attributesIdSortedToCompareWith.ElementAt(i))
-                            {
-                                // Different attributes found, so is not duplicated, we continue with next demand
-                                break;
-                            }
-                            else
-                            {
-                                // TODO: Compare value
-                            }
-                        }
+                            var attributesIdSortedToCheck = request.Attributes.Keys.OrderBy(key => key);
+                            var attributesIdSortedToCompareWith = demand.DemandAttributes.Select(attr => attr.Attribute.Id);
 
-                        return new CheckDuplicateDemandResult() { Duplicated = _mapper.Map<DemandDto>(demand) };
-                    }                    
+                            for (int i = 0; i < attributesIdSortedToCheck.Count(); i++)
+                            {
+                                if (attributesIdSortedToCheck.ElementAt(i) != attributesIdSortedToCompareWith.ElementAt(i))
+                                {
+                                    // Different attributes found, so is not duplicated, we continue with next demand
+                                    break;
+                                }
+                                else
+                                {
+                                    // TODO: Compare value
+                                }
+                            }
+
+                            return new CheckDuplicateDemandResult() { Duplicated = _mapper.Map<DemandDto>(demand) };
+                        }
+                    }
+                    else
+                    {
+                        // Both attribute collections are null and both demands have the same category so is duplicated
+                        if(request.Attributes.IsNull() && demand.DemandAttributes.IsNull())
+                            return new CheckDuplicateDemandResult() { Duplicated = _mapper.Map<DemandDto>(demand) };
+                    }
                 }
             }
 
-            return null; // Not duplicated demand
+            return new CheckDuplicateDemandResult() { Duplicated = null }; // Not duplicated demand
         }
     }
 }

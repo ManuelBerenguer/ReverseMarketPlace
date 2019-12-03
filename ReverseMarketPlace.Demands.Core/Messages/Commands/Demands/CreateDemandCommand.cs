@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using ReverseMarketPlace.Common.Extensions;
 using ReverseMarketPlace.Common.Messages;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
             BuyerReference = buyerReference;
             CategoryId = categoryId;
             Quantity = quantity;
-            Attributes = attributes;
+            Attributes = attributes.IsNull() ? new Dictionary<int, object>() : attributes;
         }
     }
 }
