@@ -12,7 +12,7 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         /// <summary>
         /// Attributes to detail more what the user wants
         /// </summary>
-        public ICollection<DemandsGroup> GroupDemands { get; private set; }
+        public ICollection<GroupDemands> GroupDemands { get; private set; }
 
         /// <summary>
         /// Offers received
@@ -28,10 +28,25 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         {
             Category = category;
             Offers = new List<Offer>();
-            GroupDemands = new List<DemandsGroup>(); // Empty list
+            GroupDemands = new List<GroupDemands>(); // Empty list
         }
 
         private Group() { }
+
+        /// <summary>
+        /// Creates a new group for the demand
+        /// </summary>
+        /// <param name="demand">First demand to be included in the new group (the lead demand)</param>
+        public Group (Demand demand)
+        {
+            if (demand.IsNull())
+                throw new ArgumentNullException(nameof(demand));
+
+            Category = demand.Category;
+            Offers = new List<Offer>(); // No offers at the moment
+            GroupDemands newGroupDemand = new GroupDemands(this, demand, true);
+            GroupDemands = new List<GroupDemands>() { newGroupDemand };
+        }
 
         public Group(Category category, ICollection<Offer> offers)
         {
@@ -40,17 +55,17 @@ namespace ReverseMarketPlace.Demands.Core.Entities
 
             Category = category;
             Offers = offers.IsNull() ? new List<Offer>() : offers;
-            GroupDemands = new List<DemandsGroup>(); // Empty list
+            GroupDemands = new List<GroupDemands>(); // Empty list
         }
 
-        public Group(Category category, ICollection<Offer> offers, ICollection<DemandsGroup> groupDemands)
+        public Group(Category category, ICollection<Offer> offers, ICollection<GroupDemands> groupDemands)
         {
             if (category.IsNull())
                 throw new ArgumentNullException(nameof(category));
 
             Category = category;
             Offers = offers.IsNull() ? new List<Offer>() : offers;
-            GroupDemands = groupDemands.IsNull() ? new List<DemandsGroup>() : groupDemands;
+            GroupDemands = groupDemands.IsNull() ? new List<GroupDemands>() : groupDemands;
         }
 
         public void AddDemand(Demand demand)
@@ -58,7 +73,7 @@ namespace ReverseMarketPlace.Demands.Core.Entities
             if (demand.IsNull())
                 throw new ArgumentNullException(nameof(demand));
 
-            DemandsGroup newGroupDemand = new DemandsGroup(this, demand);
+            GroupDemands newGroupDemand = new GroupDemands(this, demand, false);
             GroupDemands.Add(newGroupDemand);
         }
 
@@ -70,6 +85,10 @@ namespace ReverseMarketPlace.Demands.Core.Entities
             Offers.Add(offer);
         }
 
+        /// <summary>
+        /// Get the demands included
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Demand> GetDemands()
         {
             return GroupDemands.Select(gd => gd.Demand);
@@ -79,5 +98,12 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         {
             return GroupDemands.Count();
         }
+
+        public int GetNumberOfOffers()
+        {
+            return Offers.Count();
+        }
+
+        public 
     }
 }

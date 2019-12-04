@@ -40,10 +40,9 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
             if (groupsCategory.EmptyOrNull())
             {
                 // We create the new group for the category
-                var newGroup = new Group(demand.Category);
+                var newGroup = new Group(demand);
 
-                // We add the demand to the group
-                newGroup.AddDemand(demand);
+                await _unitOfWork.GroupRepository.AddAsync(newGroup);
 
                 // We persist the changes
                 await _unitOfWork.SaveChangesAsync();

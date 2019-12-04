@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ReverseMarketPlace.Demands.Core.Entities
 {
-    public class DemandsGroup : BaseEntity
+    public class GroupDemands : BaseEntity
     {
         /// <summary>
         /// Group of demands
@@ -17,13 +17,18 @@ namespace ReverseMarketPlace.Demands.Core.Entities
         /// </summary>
         public Demand Demand { get; private set; }
 
+        /// <summary>
+        /// Indicates if the demand is the one that created the group. If true, the group is based in the attributes of this demand. 
+        /// </summary>
+        public bool IsLeader { get; private set; }
 
-        private DemandsGroup() { }
+        private GroupDemands() { }
 
-        public DemandsGroup(Group group, Demand demand)
+        public GroupDemands(Group group, Demand demand, bool isLeader)
         {
             Group = group;
             Demand = demand;
+            IsLeader = isLeader;
         }
     }
 }

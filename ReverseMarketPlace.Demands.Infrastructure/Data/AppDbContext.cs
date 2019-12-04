@@ -15,7 +15,7 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data
         public DbSet<Demand> Demands { get; set; }
         public DbSet<Attribute> Attributes { get; set; }
         public DbSet<CategoryAttributes> CategoryAttributes { get; set; }
-        public DbSet<DemandsGroup> DemandsGroups { get; set; }
+        public DbSet<GroupDemands> DemandsGroups { get; set; }
         public DbSet<DemandAttributes> DemandAttributes { get; set; }
         public DbSet<Group> Groups { get; set; }
 

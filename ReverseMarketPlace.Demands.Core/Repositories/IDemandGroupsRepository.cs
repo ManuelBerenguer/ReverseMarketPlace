@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Demands.Core.Repositories
 {
-    public interface IDemandGroupsRepository : IRepository<DemandsGroup>
+    public interface IDemandGroupsRepository : IRepository<GroupDemands>
     {
         //Task<IEnumerable<DemandsGroup>> GetGroupsByCategoryIdWithDemands(int categoryId);
     }
