@@ -31,27 +31,32 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
         public async Task<FindGroupsForDemandResult> Handle(FindGroupsForDemandCommand request, CancellationToken cancellationToken)
         {
             // We get the demand by id and if the demand doesn't exist we throw exception
-            var demand = await _unitOfWork.DemandsRepository.GetDemandById(request.DemandId);
+            var demand = await _unitOfWork.DemandsRepository.GetDemandByIdWithCategoryAndAttributes(request.DemandId);
             if (demand.IsNull())
                 throw new DemandNotFoundException(_localizer[ExceptionConstants.DemandNotFound]);
 
             // We get the groups that already exist for the category's demand and, if the category does not have any group we create a new group just for this demand
-            var groupsCategory = await _unitOfWork.DemandGroupsRepository.GetGroupsByCategoryId(demand.Category.Id);
+            var groupsCategory = await _unitOfWork.GroupRepository.GetGroupsByCategoryWithDemands(demand.Category.Id);
             if (groupsCategory.EmptyOrNull())
             {
-                // We create the new group
-                var newGroup = new DemandsGroup(demand);
-                // We add the new group to our repository
-                await _unitOfWork.DemandGroupsRepository.AddAsync(newGroup);
-                // We return a list of groups including only the group just created for the demand
-                return new FindGroupsForDemandResult(new List<DemandsGroupDto>() {
-                    _mapper.Map<DemandsGroupDto>(newGroup)
+                // We create the new group for the category
+                var newGroup = new Group(demand.Category);
+
+                // We add the demand to the group
+                newGroup.AddDemand(demand);
+
+                // We persist the changes
+                await _unitOfWork.SaveChangesAsync();
+                                
+                // We return a list of groups including only the group just created for the demand (the group only contains the requested demand)
+                return new FindGroupsForDemandResult(null, new List<GroupDto>() {
+                    _mapper.Map<GroupDto>(newGroup)
                 });
             } 
 
-            // There are groups available for the category of the demand
-            
+            // There are groups available for the category of the demand. We need to select the most appropriate. 
 
+            
             return null;
         }
     }

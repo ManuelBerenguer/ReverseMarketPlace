@@ -58,7 +58,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         }
 
         [Fact]
-        public async Task NewGroupCreatedForDemandWithCategoryWithoutGroups()
+        public async Task T002_NewGroupCreatedForDemandWithCategoryWithoutGroups()
         {
             SeedData.PopulateDemandCategory4WithInchesAttribute(_repositoryFactory.GetDbContext());
 
@@ -67,16 +67,14 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
             var findGroupsForDemandResult = await _findGroupsForDemandHandler.Handle(findGroupsForDemandCommand, CancellationToken.None);
 
             Assert.IsType<FindGroupsForDemandResult>(findGroupsForDemandResult);
-            // The list of groups should not be null
+            // The list of suitable groups should be null cause the category does not have any group yet
+            Assert.Null(findGroupsForDemandResult.SuitableDemandGroups);
+            // The list of groups where the demand is already included shouls be not null (on group was created for the demand)
             Assert.NotNull(findGroupsForDemandResult.DemandGroups);
-            // The list of groups should contain only one group (the group created just for the demand)
+            // The list of groups where the demand is already included should contain only one group (the group created just for the demand)
             Assert.True(findGroupsForDemandResult.DemandGroups.Count() == 1);
             // The group demands is not null cause our demand was added to the group
-            Assert.NotNull(findGroupsForDemandResult.DemandGroups.First().Demands);
-            // The group demands collection just contains our demand cause the group was created exclusively for us
-            Assert.True(findGroupsForDemandResult.DemandGroups.First().Demands.Count() == 1);
-            // We check the demand is the one with category 4 and 5 units
-            Assert.Equal(findGroupsForDemandResult.DemandGroups.First().Demands.First(), _mapper.Map<DemandDto>(TestDemandFactory.FiveUnitsOfCategory4Buyer111()));            
+            Assert.True(findGroupsForDemandResult.DemandGroups.First().NumberOfDemands == 1);            
         }
 
     }

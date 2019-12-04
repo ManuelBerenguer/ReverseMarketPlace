@@ -17,6 +17,7 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data
         public DbSet<CategoryAttributes> CategoryAttributes { get; set; }
         public DbSet<DemandsGroup> DemandsGroups { get; set; }
         public DbSet<DemandAttributes> DemandAttributes { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -15,10 +15,10 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
     {
         public EfDemandGroupsRepository(AppDbContext appDbContext) : base(appDbContext) { }
 
-        public async Task<IEnumerable<DemandsGroup>> GetGroupsByCategoryId(int categoryId)
-        {
-            return await _dbContext.DemandsGroups.Where(dg => dg.Category.Id == categoryId)
-                .Include(dg => dg.Demands).ToListAsync();
-        }
+        //public async Task<IEnumerable<DemandsGroup>> GetGroupsByCategoryIdWithDemands(int categoryId)
+        //{
+        //    return await _dbContext.DemandsGroups.Where(dg => dg.Group.Category.Id == categoryId)
+        //        .Include(dg => dg.Demands).ToListAsync();
+        //}
     }
 }

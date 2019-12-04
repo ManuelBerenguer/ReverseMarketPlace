@@ -16,6 +16,7 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
         IAttributesRepository AttributesRepository { get; }
         ICategoryAttributesRepository CategoryAttributesRepository { get; }
         IDemandGroupsRepository DemandGroupsRepository { get; }
+        IGroupRepository GroupRepository { get; }
 
         Task<int> SaveChangesAsync();
     }

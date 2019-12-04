@@ -23,7 +23,7 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Demand> GetDemandById(int id)
+        public async Task<Demand> GetDemandByIdWithCategoryAndAttributes(int id)
         {
             return await _dbContext.Demands.Where(d => d.Id == id)
                 .Include(d => d.Category)

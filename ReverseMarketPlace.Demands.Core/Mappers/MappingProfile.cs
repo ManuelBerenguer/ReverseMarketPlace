@@ -20,7 +20,8 @@ namespace ReverseMarketPlace.Demands.Core.Mappers
             //.ForMember(d => d.Status, opts => opts.MapFrom(src => src.Status) ); 
 
             // Groups
-            CreateMap<DemandsGroup, DemandsGroupDto>(); // Means we want to map from DemandsGroup to DemandsGroupDto
+            CreateMap<Group, GroupDto>() // Means we want to map from Group to GroupDto
+                .ForMember(g => g.NumberOfDemands, map => map.MapFrom(src => src.GetNumberOfDemands())); 
         }
     }
 }

@@ -9,7 +9,8 @@ namespace ReversemarketPlace.Demands.Tests.TestData
     {
         internal static DemandsGroup GroupWithCategory4Demand()
         {
-            return new DemandsGroup( TestDemandFactory.FiveUnitsOfCategory4Buyer111() );
+            return null;
+            //return new DemandsGroup( TestDemandFactory.FiveUnitsOfCategory4Buyer111() );
         }
     }
 }

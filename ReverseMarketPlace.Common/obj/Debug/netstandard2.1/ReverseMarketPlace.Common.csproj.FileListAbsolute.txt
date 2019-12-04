@@ -18,7 +18,6 @@ C:\Users\manue\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Deb
 C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Common\bin\Debug\netstandard2.1\ReverseMarketPlace.Common.deps.json
 C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Common\bin\Debug\netstandard2.1\ReverseMarketPlace.Common.dll
 C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Common\bin\Debug\netstandard2.1\ReverseMarketPlace.Common.pdb
-C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.1\ReverseMarketPlace.Common.csprojAssemblyReference.cache
 C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.1\ReverseMarketPlace.Common.AssemblyInfoInputs.cache
 C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.1\ReverseMarketPlace.Common.AssemblyInfo.cs
 C:\Users\manuel.berenguer\Source\Repos\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.1\ReverseMarketPlace.Common.dll

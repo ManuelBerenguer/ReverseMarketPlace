@@ -15,6 +15,7 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
         private IAttributesRepository _attributesRepository;
         private ICategoryAttributesRepository _categoryAttributesRepository;
         private IDemandGroupsRepository _demandGroupsRepository;
+        private IGroupRepository _groupRepository;
         private readonly AppDbContext _appDbContext;
 
         public EfUnitOfWork(AppDbContext appDbContext) {
@@ -82,6 +83,19 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
                 }
 
                 return _demandGroupsRepository;
+            }
+        }
+
+        public IGroupRepository GroupRepository
+        {
+            get
+            {
+                if (_groupRepository.IsNull())
+                {
+                    _groupRepository = new EfGroupRepository(_appDbContext);
+                }
+
+                return _groupRepository;
             }
         }
 
