@@ -11,5 +11,6 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
     public interface IDemandsRepository : IRepository<Demand>
     {
         Task<IEnumerable<Demand>> GetBuyerDemandsWithCategoryAndAttributes(string buyerReference);
+        Task<Demand> GetDemandById(int id);
     }
 }

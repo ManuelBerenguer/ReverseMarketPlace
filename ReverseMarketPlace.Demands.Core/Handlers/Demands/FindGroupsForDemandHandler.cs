@@ -31,7 +31,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
         public async Task<FindGroupsForDemandResult> Handle(FindGroupsForDemandCommand request, CancellationToken cancellationToken)
         {
             // We get the demand by id and if the demand doesn't exist we throw exception
-            var demand = await _unitOfWork.DemandsRepository.GetByIdAsync(request.DemandId, d => d.Category);
+            var demand = await _unitOfWork.DemandsRepository.GetDemandById(request.DemandId);
             if (demand.IsNull())
                 throw new DemandNotFoundException(_localizer[ExceptionConstants.DemandNotFound]);
 

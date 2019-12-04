@@ -9,6 +9,6 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
 {
     public interface IDemandGroupsRepository : IRepository<DemandsGroup>
     {
-        Task<IEnumerable<DemandsGroup>> GetGroupsByCategoryId(int categoryId, params Expression<Func<DemandsGroup, object>>[] includeExpressions);
+        Task<IEnumerable<DemandsGroup>> GetGroupsByCategoryId(int categoryId);
     }
 }

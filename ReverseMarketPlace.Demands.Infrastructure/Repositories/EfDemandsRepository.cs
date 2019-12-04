@@ -14,24 +14,21 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
     public class EfDemandsRepository : EfRepository<Demand>, IDemandsRepository
     {   
         public EfDemandsRepository(AppDbContext appDbContext) : base(appDbContext) {}
-
-        public async Task<IEnumerable<Demand>> GetBuyerDemands(string buyerReference, params Expression<Func<Demand, object>>[] includeExpressions)
-        {
-            if (string.IsNullOrWhiteSpace(buyerReference))
-                return null;
-
-            var query = GetQueryable(includeExpressions);
-
-            return query != null ? await query.Where(d => d.BuyerReference.Equals(buyerReference)).ToListAsync() 
-                : await DbSet.Where(d => d.BuyerReference.Equals(buyerReference)).ToListAsync();
-        }
-
+                
         public async Task<IEnumerable<Demand>> GetBuyerDemandsWithCategoryAndAttributes(string buyerReference)
         {
             return await _dbContext.Demands.Where(d => d.BuyerReference.Equals(buyerReference))
                 .Include(d => d.Category)
                 .Include(d => d.DemandAttributes).ThenInclude(da => da.Attribute)
                 .ToListAsync();
+        }
+
+        public async Task<Demand> GetDemandById(int id)
+        {
+            return await _dbContext.Demands.Where(d => d.Id == id)
+                .Include(d => d.Category)
+                .Include(d => d.DemandAttributes).ThenInclude(da => da.Attribute)
+                .SingleOrDefaultAsync();
         }
     }
 }
