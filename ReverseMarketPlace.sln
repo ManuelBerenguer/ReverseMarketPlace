@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReverseMarketPlace.Demands.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReversemarketPlace.Demands.Tests", "ReversemarketPlace.Demands.Tests\ReversemarketPlace.Demands.Tests.csproj", "{255D6938-A743-4BD5-89BB-8EFCE751906A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReversemarketPlace.Demands.Infrastructure.Data.Mongo", "ReversemarketPlace.Demands.Infrastructure.Data.Mongo\ReversemarketPlace.Demands.Infrastructure.Data.Mongo.csproj", "{4D914885-B18C-4D81-9095-63BBF1E6D85A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{255D6938-A743-4BD5-89BB-8EFCE751906A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{255D6938-A743-4BD5-89BB-8EFCE751906A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{255D6938-A743-4BD5-89BB-8EFCE751906A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D914885-B18C-4D81-9095-63BBF1E6D85A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D914885-B18C-4D81-9095-63BBF1E6D85A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D914885-B18C-4D81-9095-63BBF1E6D85A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D914885-B18C-4D81-9095-63BBF1E6D85A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{F33FE8A7-7E0F-43E6-B572-2DF795129F85} = {62105167-3A2F-4B1E-B07D-DCF0E59320E7}
 		{26E36295-F44D-4FF1-994B-893FD44B22AE} = {62105167-3A2F-4B1E-B07D-DCF0E59320E7}
 		{255D6938-A743-4BD5-89BB-8EFCE751906A} = {1D1EE68F-2155-498E-8217-321B3B4204D8}
+		{4D914885-B18C-4D81-9095-63BBF1E6D85A} = {62105167-3A2F-4B1E-B07D-DCF0E59320E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB9A7025-6161-4CA5-B2EF-7F7971827EEB}

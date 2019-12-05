@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
 {
-    public class EfRepository<T> : IRepository<T> where T : BaseEntity
+    public class EfRepository<T> : IRepositoryOld<T> where T : BaseEntity
     {
         protected readonly AppDbContext _dbContext;
         protected DbSet<T> DbSet;

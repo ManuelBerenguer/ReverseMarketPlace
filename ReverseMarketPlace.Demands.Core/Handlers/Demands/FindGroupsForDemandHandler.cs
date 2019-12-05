@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using ReverseMarketPlace.Common.Extensions;
-using ReverseMarketPlace.Common.Handlers;
+using ReverseMarketPlace.Common.Types.Handlers;
 using ReverseMarketPlace.Demands.Core.Constants;
 using ReverseMarketPlace.Demands.Core.Dtos;
 using ReverseMarketPlace.Demands.Core.Entities;
@@ -20,9 +20,9 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
 {
     public class FindGroupsForDemandHandler : BaseCommandHandler<FindGroupsForDemandHandler>, IRequestHandler<FindGroupsForDemandCommand, FindGroupsForDemandResult>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWorkOld _unitOfWork;
 
-        public FindGroupsForDemandHandler(IUnitOfWork unitOfWork, IStringLocalizer<FindGroupsForDemandHandler> localizer, 
+        public FindGroupsForDemandHandler(IUnitOfWorkOld unitOfWork, IStringLocalizer<FindGroupsForDemandHandler> localizer, 
             ILogger<FindGroupsForDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
         {
             _unitOfWork = unitOfWork;

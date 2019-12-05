@@ -104,6 +104,6 @@ namespace ReverseMarketPlace.Demands.Core.Entities
             return Offers.Count();
         }
 
-        public 
+        //public 
     }
 }

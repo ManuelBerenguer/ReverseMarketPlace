@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ReverseMarketPlace.Common.Messages
+namespace ReverseMarketPlace.Common.Types.Messages
 {
     public interface IAuthenticatedCommand : ICommand
     {

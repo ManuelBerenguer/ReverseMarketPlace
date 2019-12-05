@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using ReverseMarketPlace.Common.Extensions;
-using ReverseMarketPlace.Common.Messages;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using ReverseMarketPlace.Common.Extensions;
-using ReverseMarketPlace.Common.Handlers;
+using ReverseMarketPlace.Common.Types.Handlers;
 using ReverseMarketPlace.Demands.Core.Dtos;
 using ReverseMarketPlace.Demands.Core.Messages.Commands.Demands;
 using ReverseMarketPlace.Demands.Core.Repositories;
@@ -18,10 +18,10 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
 {
     public class CheckDuplicateDemandHandler : BaseCommandHandler<CheckDuplicateDemandHandler>, IRequestHandler<CheckDuplicateDemandCommand, CheckDuplicateDemandResult>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWorkOld _unitOfWork;
 
         public CheckDuplicateDemandHandler(
-            IUnitOfWork unitOfWork, IStringLocalizer<CheckDuplicateDemandHandler> localizer, ILogger<CheckDuplicateDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
+            IUnitOfWorkOld unitOfWork, IStringLocalizer<CheckDuplicateDemandHandler> localizer, ILogger<CheckDuplicateDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
         {
             _unitOfWork = unitOfWork;
         }

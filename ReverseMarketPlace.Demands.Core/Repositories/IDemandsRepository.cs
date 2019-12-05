@@ -1,16 +1,14 @@
-﻿using ReverseMarketPlace.Demands.Core.Entities;
+﻿using ReverseMarketPlace.Common.Types.Repositories;
+using ReverseMarketPlace.Demands.Core.Domain;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Demands.Core.Repositories
 {
-    public interface IDemandsRepository : IRepository<Demand>
+    public interface IDemandsRepository
     {
-        Task<IEnumerable<Demand>> GetBuyerDemandsWithCategoryAndAttributes(string buyerReference);
-        Task<Demand> GetDemandByIdWithCategoryAndAttributes(int id);
+        //Task<Demand> GetAsync(Guid id);
     }
 }

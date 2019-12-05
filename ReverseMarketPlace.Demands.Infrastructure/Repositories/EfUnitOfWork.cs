@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
 {
-    public class EfUnitOfWork : IUnitOfWork
+    public class EfUnitOfWork : IUnitOfWorkOld
     {
-        private IDemandsRepository _demandsRepository;
+        private IDemandsRepositoryOld _demandsRepository;
         private ICategoriesRepository _categoriesRepository;
         private IAttributesRepository _attributesRepository;
         private ICategoryAttributesRepository _categoryAttributesRepository;
@@ -22,7 +22,7 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
             _appDbContext = appDbContext;
         }
 
-        public IDemandsRepository DemandsRepository {
+        public IDemandsRepositoryOld DemandsRepository {
             get
             {
                 if( _demandsRepository.IsNull())

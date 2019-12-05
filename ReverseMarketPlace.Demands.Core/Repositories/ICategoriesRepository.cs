@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Demands.Core.Repositories
 {
-    public interface ICategoriesRepository : IRepository<Category>
+    public interface ICategoriesRepository : IRepositoryOld<Category>
     {
         Task<Category> GetByIdWithAttributes(int categoryId);
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Demands.Core.Repositories
 {
-    public interface IRepository<T> where T : BaseEntity
+    public interface IRepositoryOld<T> where T : BaseEntity
     {
         Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includeExpressions);        
         Task<IEnumerable<T>> GetByIdsAsync(IEnumerable<int> ids, params Expression<Func<T, object>>[] includeExpressions);

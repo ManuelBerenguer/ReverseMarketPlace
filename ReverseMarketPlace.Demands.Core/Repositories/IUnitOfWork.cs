@@ -12,12 +12,5 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
     public interface IUnitOfWork
     {
         IDemandsRepository DemandsRepository { get; }
-        ICategoriesRepository CategoriesRepository { get; }
-        IAttributesRepository AttributesRepository { get; }
-        ICategoryAttributesRepository CategoryAttributesRepository { get; }
-        IDemandGroupsRepository DemandGroupsRepository { get; }
-        IGroupRepository GroupRepository { get; }
-
-        Task<int> SaveChangesAsync();
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Demands.Core.Repositories
 {
-    public interface ICategoryAttributesRepository : IRepository<CategoryAttributes>
+    public interface ICategoryAttributesRepository : IRepositoryOld<CategoryAttributes>
     {
         Task<IEnumerable<CategoryAttributes>> GetCategoryAttributes(int categoryId, params Expression<Func<CategoryAttributes, object>>[] includeExpressions);
     }

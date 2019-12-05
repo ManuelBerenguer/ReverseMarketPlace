@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ReverseMarketPlace.Common.Handlers
+namespace ReverseMarketPlace.Common.Types.Handlers
 {
     /// <summary>
     /// Base class for any command handler built following the Command Query Responsability Segregation (CQRS).

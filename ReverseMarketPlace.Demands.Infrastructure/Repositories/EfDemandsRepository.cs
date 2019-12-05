@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
 {
-    public class EfDemandsRepository : EfRepository<Demand>, IDemandsRepository
+    public class EfDemandsRepository : EfRepository<Demand>, IDemandsRepositoryOld
     {   
         public EfDemandsRepository(AppDbContext appDbContext) : base(appDbContext) {}
                 

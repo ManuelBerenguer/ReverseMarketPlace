@@ -23,7 +23,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
     public class FindGroupsForDemandHandlerTest : IClassFixture<RepositoryFactory>
     {
         private readonly RepositoryFactory _repositoryFactory;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWorkOld _unitOfWork;
         private readonly FindGroupsForDemandHandler _findGroupsForDemandHandler;
 
         private readonly Mock<IStringLocalizer<FindGroupsForDemandHandler>> _localizer;
