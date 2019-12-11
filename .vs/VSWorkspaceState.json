@@ -9,6 +9,6 @@
     "\\ReverseMarketPlace.Demands.Core\\Messages\\Commands\\Demands",
     "\\ReversemarketPlace.Demands.Tests"
   ],
-  "SelectedNode": "\\ReverseMarketPlace.Demands.Core\\Handlers\\Demands\\CreateDemandHandler.cs",
+  "SelectedNode": "\\ReverseMarketPlace.sln",
   "PreviewInSolutionExplorer": false
 }

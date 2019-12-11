@@ -12,5 +12,13 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
     public interface IUnitOfWork
     {
         IDemandsRepository DemandsRepository { get; }
+        ICategoriesRepository CategoriesRepository { get; }
+        IProductTypesRepository ProductTypesRepository { get; }
+        IAttributesRepository AttributesRepository { get; }
+
+        // We don't need SaveChangesAsync because using aggregates we save all changes of one aggregate at once. 
+        // If the changes done over one aggregate requires changing something on a different aggregate we will publish
+        // an event.
+        //Task<int> SaveChangesAsync();
     }
 }

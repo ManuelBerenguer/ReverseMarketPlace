@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ReverseMarketPlace.Demands.Core.Entities;
-using ReverseMarketPlace.Demands.Infrastructure.Data;
-using ReverseMarketPlace.Demands.Infrastructure.Data.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace ReversemarketPlace.Demands.Tests

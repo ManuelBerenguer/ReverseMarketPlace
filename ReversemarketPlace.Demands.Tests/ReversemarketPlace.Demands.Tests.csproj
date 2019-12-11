@@ -1,10 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="RepositoryFactory.cs" />
+    <Compile Remove="SeedData.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
@@ -18,11 +23,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ReverseMarketPlace.Demands.Core\ReverseMarketPlace.Demands.Core.csproj" />
-    <ProjectReference Include="..\ReverseMarketPlace.Demands.Infrastructure\ReverseMarketPlace.Demands.Infrastructure.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Fixtures\" />
+    <Folder Include="UseCases\" />
   </ItemGroup>
 
 </Project>

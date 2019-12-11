@@ -9,12 +9,18 @@ namespace ReverseMarketPlace.Demands.Core.Constants
         /* Demands */
         public const string QuantityMustBeGreaterThanZero = "Quantity Must Be Grater Than Zero";
         public const string DemandNotFound = "Demand Not Found";
+        public const string DuplicatedDemand = "Duplicated Demand";
 
         /* Categories */
         public const string CategoryNotFound = "Category Not Found";
 
-        /* Category Attributes */
-        public const string CategoryAttributeNotFound = "Category Attribute Not Found";
-        
+        /* Product Types */
+        public const string ProductTypeNotFound = "Product Type Not Found";
+
+        /* Product Types Attributes */
+        public const string ProductTypeAttributeNotFound = "Product Type Attribute Not Found";
+
+        /* Attributes */
+        public const string AttributeValueNotValid = "Attribute Value Not Valid";        
     }
 }

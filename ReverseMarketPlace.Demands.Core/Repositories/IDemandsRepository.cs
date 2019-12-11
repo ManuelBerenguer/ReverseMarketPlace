@@ -9,6 +9,7 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
 {
     public interface IDemandsRepository
     {
-        //Task<Demand> GetAsync(Guid id);
+        Task<IEnumerable<Demand>> GetBuyerDemands(Guid buyerId);
+        Task AddAsync(Demand demand);
     }
 }

@@ -1,8 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Messages\Commands\CategoryAttributes\**" />
+    <EmbeddedResource Remove="Messages\Commands\CategoryAttributes\**" />
+    <None Remove="Messages\Commands\CategoryAttributes\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
@@ -18,8 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Handlers\CategoryAttributes\" />
-    <Folder Include="Messages\Commands\CategoryAttributes\" />
-    <Folder Include="UseCases\Demands\" />
   </ItemGroup>
 
 </Project>

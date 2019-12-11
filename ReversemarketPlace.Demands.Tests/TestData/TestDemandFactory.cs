@@ -9,22 +9,26 @@ namespace ReversemarketPlace.Demands.Tests.TestData
     {
         internal static Demand OneUnitOfCategory1Buyer111()
         {
-            return new Demand("111", TestCategoryFactory.Category1(), 1);
+            return null;
+            //return new Demand("111", TestCategoryFactory.Category1(), 1);
         }
 
         internal static Demand ThreeUnitsOfCategory2Buyer111()
         {
-            return new Demand("111", TestCategoryFactory.Category2(), 3);
+            return null;
+            //return new Demand("111", TestCategoryFactory.Category2(), 3);
         }
 
         internal static Demand FiveUnitsOfCategory3Buyer111()
         {
-            return new Demand("111", TestCategoryFactory.Category3(), 5);
+            return null;
+            //return new Demand("111", TestCategoryFactory.Category3(), 5);
         }
 
         internal static Demand FiveUnitsOfCategory4Buyer111()
         {
-            return new Demand("111", TestCategoryFactory.Category4(), 5);
+            return null;
+            //return new Demand("111", TestCategoryFactory.Category4(), 5);
         }
     }
 }

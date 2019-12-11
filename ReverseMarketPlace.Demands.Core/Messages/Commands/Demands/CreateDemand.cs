@@ -18,12 +18,12 @@ namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
         /// <summary>
         /// Id of the buyer who is creating the demand
         /// </summary>
-        public Guid BuyerReference { get; }
+        public Guid BuyerId { get; }
 
         /// <summary>
-        /// Category id of the product demanded
+        /// Type id of the product demanded
         /// </summary>
-        public Guid CategoryId { get; }
+        public Guid ProductTypeId { get; }
 
         /// <summary>
         /// Quantity of the product demanded
@@ -33,14 +33,14 @@ namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
         /// <summary>
         /// Attributes for the demand
         /// </summary>
-        public IDictionary<int, object> Attributes { get; }
+        public IDictionary<Guid, object> Attributes { get; }
 
         [JsonConstructor]
-        public CreateDemand(Guid id, Guid buyerReference, Guid categoryId, float quantity, IDictionary<int, object> attributes)
+        public CreateDemand(Guid id, Guid buyerReference, Guid productTypeId, float quantity, IDictionary<Guid, object> attributes)
         {
             Id = id == Guid.Empty ? Guid.NewGuid() : id;
-            BuyerReference = buyerReference;
-            CategoryId = categoryId;
+            BuyerId = buyerReference;
+            ProductTypeId = productTypeId;
             Quantity = quantity;
             Attributes = attributes;
         }

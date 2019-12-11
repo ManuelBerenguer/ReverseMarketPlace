@@ -1,4 +1,4 @@
-﻿using ReverseMarketPlace.Demands.Core.Entities;
+﻿using ReverseMarketPlace.Demands.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,24 +7,34 @@ namespace ReversemarketPlace.Demands.Tests.TestData
 {
     internal static class TestCategoryFactory
     {
-        internal static Category Category1()
+        internal static Guid CATEGORY_TV_AND_AUDIO_GUID()
         {
-            return new Category(Constants.CATEGORY_TV_AND_AUDIO, null);
+            return new Guid(Constants.CATEGORY_TV_AND_AUDIO_GUID);
         }
 
-        internal static Category Category2()
+        internal static Category CATEGORY_TV_AND_AUDIO()
         {
-            return new Category(Constants.CATEGORY_TV, TestCategoryFactory.Category1());
+            return new Category(CATEGORY_TV_AND_AUDIO_GUID(), Constants.CATEGORY_TV_AND_AUDIO, null, null);
         }
 
-        internal static Category Category3()
+        internal static Guid CATEGORY_TV_GUID()
         {
-            return new Category(Constants.CATEGORY_AUDIO, TestCategoryFactory.Category1());
+            return new Guid(Constants.CATEGORY_TV_GUID);
         }
 
-        internal static Category Category4()
+        internal static Category CATEGORY_TV()
         {
-            return new Category(Constants.CATEGORY_TELEVISIONS, TestCategoryFactory.Category2());
+            return new Category(CATEGORY_TV_GUID(), Constants.CATEGORY_TV, CATEGORY_TV_AND_AUDIO(), null);
+        }
+
+        internal static Guid CATEGORY_AUDIO_GUID()
+        {
+            return new Guid(Constants.CATEGORY_AUDIO_GUID);
+        }
+
+        internal static Category CATEGORY_AUDIO()
+        {
+            return new Category(CATEGORY_AUDIO_GUID(), Constants.CATEGORY_AUDIO, CATEGORY_TV_AND_AUDIO(), null);
         }
     }
 }
