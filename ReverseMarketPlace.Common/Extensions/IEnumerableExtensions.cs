@@ -31,5 +31,16 @@ namespace ReverseMarketPlace.Common.Extensions
         {
             return ((source == null || source.Count() == 0) ? true : false);
         }
+
+        /// <summary>
+        /// Checks if a collection is null
+        /// </summary>
+        /// <typeparam name="T">Generic type</typeparam>
+        /// <param name="source">Collection to evaluate if is null</param>
+        /// <returns>True if the collection is null, false otherwise</returns>
+        public static bool IsEmpty<T>(this IEnumerable<T> source)
+        {
+            return (source == null);
+        }
     }
 }
