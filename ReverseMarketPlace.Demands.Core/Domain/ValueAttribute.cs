@@ -30,24 +30,39 @@ namespace ReverseMarketPlace.Demands.Core.Domain
             if (value.IsNull())
                 throw new ArgumentException(nameof(value));
 
-            Value = value;
+            Value = value;            
+        }
 
-            //switch(DataType)
-            //{
-            //    case AttributeDataTypeEnum.BoleanValue:
-            //        try
-            //        {
-            //            Value = Convert.ToBoolean(value);
-            //        }
-            //        catch(Exception ex)
-            //        {
-            //            throw new AttributeValueNotValidException(ExceptionConstants.AttributeValueNotValid, ex);
-            //        }                    
-            //        break;
+        /// <summary>
+        /// Checks if has the same value of other ValueAttribute object
+        /// </summary>
+        /// <param name="other">ValueAttribute object for compare to</param>
+        /// <returns>True if both have the same value, false otherwise</returns>
+        public bool HasSameValue(ValueAttribute other)
+        {
+            if (DataType == AttributeDataTypeEnum.NumericValue)
+            {                
+                if (Convert.ToInt32(Value) == Convert.ToInt32(other.Value))
+                {
+                    return true;
+                } 
+                else
+                {
+                    return false;
+                }
+            }
 
-            //    case AttributeDataTypeEnum.NumericValue:
+            return false;
+        }
 
-            //}
+        /// <summary>
+        /// Checks if has different value of other ValueAttribute object
+        /// </summary>
+        /// <param name="other">ValueAttribute object for compare to</param>
+        /// <returns>True if both have different value, false otherwise</returns>
+        public bool HasDifferentValue(ValueAttribute other)
+        {
+            return !HasSameValue(other);
         }
     }
 }

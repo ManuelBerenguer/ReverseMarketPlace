@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ReverseMarketPlace.Common.Extensions;
 using ReverseMarketPlace.Demands.Core.Domain;
+using ReverseMarketPlace.Demands.Core.Enums.Demands;
 
 namespace ReverseMarketPlace.Demands.Core.UseCases.Demands
 {
@@ -42,7 +43,7 @@ namespace ReverseMarketPlace.Demands.Core.UseCases.Demands
                     (!demandInCollection.Attributes.EmptyOrNull() && demand.Attributes.EmptyOrNull()))
                     continue;
 
-                // Same product type and both with attributes but different number of them
+                // Same product type and both with attributes but different number of them, the demand is not duplicated
                 if (demandInCollection.Attributes.Count() != demand.Attributes.Count())
                     continue;
 
@@ -50,12 +51,26 @@ namespace ReverseMarketPlace.Demands.Core.UseCases.Demands
                 var demandInCollectionAttributesDic = demandInCollection.Attributes.ToDictionary(att => att.Id);
                 var demandAttributesDic = demand.Attributes.ToDictionary(att => att.Id);
 
-                // Same product type and same number of attributes, but different attributes
+                // Same product type and same number of attributes, but different attributes, the demand is not duplicated
                 if (demandInCollectionAttributesDic.Keys.Except(demandAttributesDic.Keys).Any())
                     continue;
 
+                bool differentAttributesValue = false;
                 // Same product type and same attributes, we check the values
-                
+                foreach(var demandValueAttr in demandAttributesDic)
+                {
+                    var demandInCollectionValueAttr = demandInCollectionAttributesDic[demandValueAttr.Key];
+
+                    if (demandInCollectionValueAttr.HasDifferentValue(demandValueAttr.Value))
+                    {
+                        differentAttributesValue = true;
+                        break; // We stop comparing attributes because we already have found one with different value
+                    }                        
+                }
+
+                // Same product type, with same attributes and same value for the attributes, the demand is duplicated
+                if (!differentAttributesValue)
+                    return true;
             }
 
             return false;

@@ -95,12 +95,21 @@ namespace ReversemarketPlace.Demands.Tests.UseCases
         }
 
         [Fact]
-        public async Task T008_SameProductTypeSameAttributesButDifferentValuesReturnsNotDuplicated()
+        public async Task T009_SameProductTypeSameAttributesButDifferentValuesReturnsNotDuplicated()
         {
             var demandCollection = new List<Demand>() { TestDemandFactory.DEMAND_PRODUCTTYPE2_WITH_ONE_ATTRIBUTE_INCHES_55() };
 
             Assert.False(await _checkDuplicatedDemandUseCase.ExecuteAsync(demandCollection,
                 TestDemandFactory.DEMAND_PRODUCTTYPE2_WITH_ONE_ATTRIBUTE_INCHES_50()));
+        }
+
+        [Fact]
+        public async Task T010_SameProductTypeSameAttributesWithSameValuesReturnsDuplicated()
+        {
+            var demandCollection = new List<Demand>() { TestDemandFactory.DEMAND_PRODUCTTYPE2_WITH_ONE_ATTRIBUTE_INCHES_55() };
+
+            Assert.True(await _checkDuplicatedDemandUseCase.ExecuteAsync(demandCollection,
+                TestDemandFactory.DEMAND_PRODUCTTYPE2_WITH_ONE_ATTRIBUTE_INCHES_55()));
         }
     }
 }
