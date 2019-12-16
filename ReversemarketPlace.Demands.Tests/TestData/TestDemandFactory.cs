@@ -31,26 +31,26 @@ namespace ReversemarketPlace.Demands.Tests.TestData
         internal static Demand DEMAND_PRODUCTTYPE2_WITH_ONE_ATTRIBUTE_INCHES_55()
         {
             return new Demand(DEMAND_2_GUID(), TestBuyerFactory.BUYER_1_GUID(), TestProductTypeFactory.PRODUCT_TYPE_2_GUID(),
-                1, new List<ValueAttribute>() { TestValueAttributeFactory.INCHES_55_ATTRIBUTE() });
+                1, new List<AttributeValue>() { TestAttributeValueFactory.INCHES_55_ATTRIBUTE() });
         }
 
         internal static Demand DEMAND_PRODUCTTYPE2_WITH_ONE_ATTRIBUTE_INCHES_50()
         {
             return new Demand(DEMAND_2_GUID(), TestBuyerFactory.BUYER_1_GUID(), TestProductTypeFactory.PRODUCT_TYPE_2_GUID(),
-                1, new List<ValueAttribute>() { TestValueAttributeFactory.INCHES_50_ATTRIBUTE() });
+                1, new List<AttributeValue>() { TestAttributeValueFactory.INCHES_50_ATTRIBUTE() });
         }
 
         internal static Demand DEMAND_PRODUCTTYPE2_WITH_ONE_ATTRIBUTE_COLOR()
         {
             return new Demand(DEMAND_2_GUID(), TestBuyerFactory.BUYER_1_GUID(), TestProductTypeFactory.PRODUCT_TYPE_2_GUID(),
-                1, new List<ValueAttribute>() { TestValueAttributeFactory.COLOR_BLACK_ATTRIBUTE() });
+                1, new List<AttributeValue>() { TestAttributeValueFactory.COLOR_BLACK_ATTRIBUTE() });
         }
 
         internal static Demand DEMAND_PRODUCTTYPE2_WITH_TWO_ATTRIBUTES()
         {
             return new Demand(DEMAND_2_GUID(), TestBuyerFactory.BUYER_1_GUID(), TestProductTypeFactory.PRODUCT_TYPE_2_GUID(),
-                1, new List<ValueAttribute>() {
-                    TestValueAttributeFactory.INCHES_55_ATTRIBUTE(), TestValueAttributeFactory.COLOR_BLACK_ATTRIBUTE()
+                1, new List<AttributeValue>() {
+                    TestAttributeValueFactory.INCHES_55_ATTRIBUTE(), TestAttributeValueFactory.COLOR_BLACK_ATTRIBUTE()
                 });
         }
 

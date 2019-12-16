@@ -20,15 +20,15 @@ namespace ReversemarketPlace.Demands.Tests.TestData
             new Attribute(COLOR_ATTRIBUTE_GUID(), Constants.COLOR_ATTRIBUTE, AttributeDataTypeEnum.StringValue);
     }
 
-    internal static class TestValueAttributeFactory
+    internal static class TestAttributeValueFactory
     {
-        internal static ValueAttribute INCHES_55_ATTRIBUTE() =>
-            new ValueAttribute(TestAttributeFactory.INCHES_ATTRIBUTE(), 55);
+        internal static AttributeValue INCHES_55_ATTRIBUTE() =>
+            new AttributeValue(TestAttributeFactory.INCHES_ATTRIBUTE(), 55);
 
-        internal static ValueAttribute INCHES_50_ATTRIBUTE() =>
-            new ValueAttribute(TestAttributeFactory.INCHES_ATTRIBUTE(), 50);
+        internal static AttributeValue INCHES_50_ATTRIBUTE() =>
+            new AttributeValue(TestAttributeFactory.INCHES_ATTRIBUTE(), 50);
 
-        internal static ValueAttribute COLOR_BLACK_ATTRIBUTE() =>
-            new ValueAttribute(TestAttributeFactory.COLOR_ATTRIBUTE(), "Black");
+        internal static AttributeValue COLOR_BLACK_ATTRIBUTE() =>
+            new AttributeValue(TestAttributeFactory.COLOR_ATTRIBUTE(), "Black");
     }
 }

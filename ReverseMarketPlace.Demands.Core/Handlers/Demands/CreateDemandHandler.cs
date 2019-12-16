@@ -50,7 +50,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
             if (productType.IsNull())
                 throw new ProductTypeNotFoundException(_localizer[ExceptionConstants.ProductTypeNotFound]);
 
-            ICollection<ValueAttribute> attributes = new List<ValueAttribute>();
+            ICollection<AttributeValue> attributes = new List<AttributeValue>();
             // If there are attributes to process
             if (command.Attributes.IsNotNull())
             {
@@ -64,7 +64,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
                 {
                     // We previously checked that all demand attributes belong to the product type, so we can get them with trust from the product type
                     var attribute = productType.Attributes.SingleOrDefault(attr => attr.Id == demandAttribute.Key);
-                    attributes.Add(new ValueAttribute(attribute, demandAttribute.Value));
+                    attributes.Add(new AttributeValue(attribute, demandAttribute.Value));
                 }
             }
 

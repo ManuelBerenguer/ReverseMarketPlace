@@ -35,21 +35,21 @@ namespace ReverseMarketPlace.Demands.Core.UseCases.Demands
                     continue;
 
                 // Same product type and both without attributes, the demand is duplicated
-                if (demandInCollection.Attributes.EmptyOrNull() && demand.Attributes.EmptyOrNull())
+                if (demandInCollection.WithoutAttributes() && demand.WithoutAttributes())
                     return true;
 
                 // Same product type one with attributes and the other one without attributes, the demand is not duplicated
-                if ((demandInCollection.Attributes.EmptyOrNull() && !demand.Attributes.EmptyOrNull()) ||
-                    (!demandInCollection.Attributes.EmptyOrNull() && demand.Attributes.EmptyOrNull()))
+                if ((demandInCollection.WithoutAttributes() && !demand.HasAttributes()) ||
+                    (!demandInCollection.HasAttributes() && demand.WithoutAttributes()))
                     continue;
 
                 // Same product type and both with attributes but different number of them, the demand is not duplicated
-                if (demandInCollection.Attributes.Count() != demand.Attributes.Count())
+                if (demandInCollection.GetNumberOfAttributes() != demand.GetNumberOfAttributes())
                     continue;
 
                 // We get attributes of both demands as dictionaries
-                var demandInCollectionAttributesDic = demandInCollection.Attributes.ToDictionary(att => att.Id);
-                var demandAttributesDic = demand.Attributes.ToDictionary(att => att.Id);
+                var demandInCollectionAttributesDic = demandInCollection.GetAttributesDictionary();
+                var demandAttributesDic = demand.GetAttributesDictionary();
 
                 // Same product type and same number of attributes, but different attributes, the demand is not duplicated
                 if (demandInCollectionAttributesDic.Keys.Except(demandAttributesDic.Keys).Any())

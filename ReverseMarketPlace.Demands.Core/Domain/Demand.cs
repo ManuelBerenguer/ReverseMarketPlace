@@ -5,6 +5,7 @@ using ReverseMarketPlace.Demands.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace ReverseMarketPlace.Demands.Core.Domain
 {
@@ -43,7 +44,7 @@ namespace ReverseMarketPlace.Demands.Core.Domain
         /// <summary>
         /// Attributes to detail more what the buyer wants
         /// </summary>
-        public ICollection<ValueAttribute> Attributes { get; private set; }
+        public ICollection<AttributeValue> Attributes { get; private set; }
 
         /// <summary>
         /// Creates a new demand from the parameters given and status CREATED.
@@ -53,7 +54,7 @@ namespace ReverseMarketPlace.Demands.Core.Domain
         /// <param name="productTypeId">Product type id associated to the demand</param>
         /// <param name="quantity">Quantity of the product demanded</param>
         /// <param name="attributes">Attributes to get more detail about the demand</param>
-        public Demand(Guid id, Guid buyerId, Guid productTypeId, float quantity, ICollection<ValueAttribute> attributes)
+        public Demand(Guid id, Guid buyerId, Guid productTypeId, float quantity, ICollection<AttributeValue> attributes)
         {            
             SetId(id);
             SetBuyerId(buyerId);
@@ -72,7 +73,7 @@ namespace ReverseMarketPlace.Demands.Core.Domain
         /// <param name="quantity">Quantity of the product demanded</param>
         /// <param name="status">State of the demand</param>
         /// <param name="attributes">Attributes to get more detail about the demand</param>
-        public Demand(Guid id, Guid buyerId, Guid productTypeId, float quantity, DemandStatusEnum status, ICollection<ValueAttribute> attributes)
+        public Demand(Guid id, Guid buyerId, Guid productTypeId, float quantity, DemandStatusEnum status, ICollection<AttributeValue> attributes)
         {
             SetId(id);
             SetBuyerId(buyerId);
@@ -80,14 +81,6 @@ namespace ReverseMarketPlace.Demands.Core.Domain
             SetQuantity(quantity);
             SetStatus(status);
             SetAttributes(attributes);
-        }
-
-        public void SetId(Guid id)
-        {
-            if (id == null || id == Guid.Empty)
-                throw new InvalidIdException(nameof(id));
-
-            Id = id;
         }
 
         public void SetBuyerId(Guid buyerId)
@@ -119,9 +112,29 @@ namespace ReverseMarketPlace.Demands.Core.Domain
             Status = status;
         }
 
-        public void SetAttributes(ICollection<ValueAttribute> attributes)
+        public void SetAttributes(ICollection<AttributeValue> attributes)
         {
             Attributes = attributes;
+        }       
+
+        public bool HasAttributes()
+        {
+            return !Attributes.EmptyOrNull();
+        }
+
+        public bool WithoutAttributes()
+        {
+            return !HasAttributes();
+        }
+
+        public int GetNumberOfAttributes()
+        {
+            return Attributes.EmptyOrNull() ? 0 : Attributes.Count();
+        }
+
+        public Dictionary<Guid, AttributeValue> GetAttributesDictionary()
+        {
+            return Attributes.ToDictionary(att => att.Attribute.Id);
         }
     }
 }
