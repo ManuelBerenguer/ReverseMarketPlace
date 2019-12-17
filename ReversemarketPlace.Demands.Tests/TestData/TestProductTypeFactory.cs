@@ -19,17 +19,17 @@ namespace ReversemarketPlace.Demands.Tests.TestData
 
         internal static ProductType PRODUCT_TYPE_TELEVISIONS_WITHOUT_ATTRIBUTES()
         {
-            return new ProductType(PRODUCT_TYPE_TELEVISIONS_GUID(), Constants.PRODUCT_TYPE_TELEVISIONS, TestCategoryFactory.CATEGORY_TV(), null);
+            return new ProductType(PRODUCT_TYPE_TELEVISIONS_GUID(), Constants.PRODUCT_TYPE_TELEVISIONS, TestCategoryFactory.CATEGORY_TV().Id, null);
         }
 
         internal static ProductType PRODUCT_TYPE_2_WITHOUT_ATTRIBUTES()
         {
-            return new ProductType(PRODUCT_TYPE_2_GUID(), Constants.PRODUCT_TYPE_2, TestCategoryFactory.CATEGORY_TV(), null);
+            return new ProductType(PRODUCT_TYPE_2_GUID(), Constants.PRODUCT_TYPE_2, TestCategoryFactory.CATEGORY_TV().Id, null);
         }
 
         internal static ProductType PRODUCT_TYPE_TELEVISIONS_WITH_ATTRIBUTES()
         {
-            return new ProductType(PRODUCT_TYPE_TELEVISIONS_GUID(), Constants.PRODUCT_TYPE_TELEVISIONS, TestCategoryFactory.CATEGORY_TV(), null);
+            return new ProductType(PRODUCT_TYPE_TELEVISIONS_GUID(), Constants.PRODUCT_TYPE_TELEVISIONS, TestCategoryFactory.CATEGORY_TV().Id, null);
         }
     }
 }

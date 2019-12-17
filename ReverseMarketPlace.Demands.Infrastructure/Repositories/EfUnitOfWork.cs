@@ -1,28 +1,22 @@
 ﻿using ReverseMarketPlace.Common.Extensions;
 using ReverseMarketPlace.Demands.Core.Repositories;
-using ReverseMarketPlace.Demands.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using ReverseMarketPlace.Demands.Infrastructure.Data.EF.Data;
+using ReverseMarketPlace.Demands.Infrastructure.Data.EF.Repositories;
 
 namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
 {
-    public class EfUnitOfWork : IUnitOfWorkOld
+    public class EfUnitOfWork : IUnitOfWork
     {
-        private IDemandsRepositoryOld _demandsRepository;
-        private ICategoriesRepository _categoriesRepository;
-        private IAttributesRepository _attributesRepository;
-        private ICategoryAttributesRepository _categoryAttributesRepository;
-        private IDemandGroupsRepository _demandGroupsRepository;
-        private IGroupRepository _groupRepository;
+        private IDemandsRepository _demandsRepository;
+        private ICategoriesRepository _categoriesRepository;        
+        private IProductTypesRepository _productTypesRepository;
         private readonly AppDbContext _appDbContext;
 
         public EfUnitOfWork(AppDbContext appDbContext) {
             _appDbContext = appDbContext;
         }
 
-        public IDemandsRepositoryOld DemandsRepository {
+        public IDemandsRepository DemandsRepository {
             get
             {
                 if( _demandsRepository.IsNull())
@@ -46,62 +40,18 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
                 return _categoriesRepository;
             }
         }
-
-        public IAttributesRepository AttributesRepository
+                
+        public IProductTypesRepository ProductTypesRepository
         {
             get
             {
-                if( _attributesRepository.IsNull() )
+                if(_productTypesRepository.IsNull())
                 {
-                    _attributesRepository = new EfAttributesRepository(_appDbContext);
+                    _productTypesRepository = new EfProductTypesRepository(_appDbContext);
                 }
 
-                return _attributesRepository;
+                return _productTypesRepository;
             }
-        }
-
-        public ICategoryAttributesRepository CategoryAttributesRepository
-        {
-            get
-            {
-                if (_categoryAttributesRepository.IsNull())
-                {
-                    _categoryAttributesRepository = new EfCategoryAttributesRepository(_appDbContext);
-                }
-
-                return _categoryAttributesRepository;
-            }
-        }
-
-        public IDemandGroupsRepository DemandGroupsRepository
-        {
-            get
-            {
-                if (_demandGroupsRepository.IsNull())
-                {
-                    _demandGroupsRepository = new EfDemandGroupsRepository(_appDbContext);
-                }
-
-                return _demandGroupsRepository;
-            }
-        }
-
-        public IGroupRepository GroupRepository
-        {
-            get
-            {
-                if (_groupRepository.IsNull())
-                {
-                    _groupRepository = new EfGroupRepository(_appDbContext);
-                }
-
-                return _groupRepository;
-            }
-        }
-
-        public async Task<int> SaveChangesAsync()
-        {
-            return await _appDbContext.SaveChangesAsync();
         }
     }
 }

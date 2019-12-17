@@ -18,29 +18,41 @@ namespace ReverseMarketPlace.Demands.Core.Domain
         public string Name { get; private set; }
 
         /// <summary>
-        /// Category of the product type
+        /// Id of the category of the product type
         /// </summary>
-        public Category Category { get; private set; }
+        public Guid CategoryId { get; private set; }
 
         /// <summary>
         /// Collection of attributes allowed for this product type 
         /// </summary>
         public ICollection<Attribute> Attributes { get; private set; }
 
-        public ProductType(Guid id, string name, Category category, ICollection<Attribute> attributes)
-        {
-            if (id.IsNull() || id == Guid.Empty)
-                throw new InvalidIdException(nameof(id));
+        public ProductType(Guid id, string name, Guid categoryId, ICollection<Attribute> attributes)
+        {        
+            SetId(id);
+            SetName(name);
+            SetCategoryId(categoryId);
+            SetAttributes(attributes);
+        }
 
+        public void SetName(string name)
+        {
             if (String.IsNullOrEmpty(name))
                 throw new ArgumentException(nameof(name));
 
-            if (category.IsNull())
-                throw new ArgumentNullException(nameof(category));
-
-            Id = id;
             Name = name;
-            Category = category;
+        }
+
+        public void SetCategoryId(Guid categoryId)
+        {
+            if (categoryId == null || categoryId == Guid.Empty)
+                throw new InvalidIdException(nameof(categoryId));
+
+            CategoryId = categoryId;
+        }
+
+        public void SetAttributes(ICollection<Attribute> attributes)
+        {
             Attributes = attributes;
         }
     }

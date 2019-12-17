@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReverseMarketPlace.Demands.Core.Entities;
 using ReverseMarketPlace.Demands.Core.Repositories;
+using ReverseMarketPlace.Demands.Infrastructure.Data.EF.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,14 @@ using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
 {
-    public class EfGroupRepository : EfRepository<Group>, IGroupRepository
+    public class EfGroupRepository
     {
-        public EfGroupRepository(AppDbContext appDbContext) : base(appDbContext) { }
+        protected readonly AppDbContext _dbContext;
 
-        public async Task<IEnumerable<Group>> GetGroupsByCategoryWithDemands(int categoryId)
-        {
-            return await _dbContext.Groups.Where(g => g.Category.Id == categoryId).Include(g => g.GroupDemands).ThenInclude(gd => gd.Demand).ToListAsync();
+        public EfGroupRepository(AppDbContext appDbContext) {
+            _dbContext = appDbContext;
         }
+
+        
     }
 }

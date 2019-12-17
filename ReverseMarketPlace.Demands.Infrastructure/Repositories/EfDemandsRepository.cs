@@ -1,34 +1,40 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ReverseMarketPlace.Demands.Core.Entities;
+using ReverseMarketPlace.Demands.Core.Domain;
 using ReverseMarketPlace.Demands.Core.Repositories;
-using ReverseMarketPlace.Demands.Infrastructure.Data;
+using ReverseMarketPlace.Demands.Infrastructure.Data.EF.Data;
+using ReverseMarketPlace.Demands.Infrastructure.Data.EF.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
+namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Repositories
 {
-    public class EfDemandsRepository : EfRepository<Demand>, IDemandsRepositoryOld
-    {   
-        public EfDemandsRepository(AppDbContext appDbContext) : base(appDbContext) {}
-                
-        public async Task<IEnumerable<Demand>> GetBuyerDemandsWithCategoryAndAttributes(string buyerReference)
-        {
-            return await _dbContext.Demands.Where(d => d.BuyerReference.Equals(buyerReference))
-                .Include(d => d.Category)
-                .Include(d => d.DemandAttributes).ThenInclude(da => da.Attribute)
-                .ToListAsync();
+    public class EfDemandsRepository : IDemandsRepository
+    {
+        protected readonly AppDbContext _dbContext;
+
+        public EfDemandsRepository(AppDbContext appDbContext) {
+            _dbContext = appDbContext;
         }
 
-        public async Task<Demand> GetDemandByIdWithCategoryAndAttributes(int id)
-        {
-            return await _dbContext.Demands.Where(d => d.Id == id)
-                .Include(d => d.Category)
-                .Include(d => d.DemandAttributes).ThenInclude(da => da.Attribute)
-                .SingleOrDefaultAsync();
+        public async Task AddAsync(Core.Domain.Demand demand)
+        {                        
+            List<EF.Persistance_Models.DemandAttributeValue> demandAttributeValues = 
+                demand.Attributes.Select(att => new EF.Persistance_Models.DemandAttributeValue(att, demand.Id)).ToList();
+
+            EF.Persistance_Models.Demand newDemand = new EF.Persistance_Models.Demand(demand, demandAttributeValues);
+
+            await _dbContext.Demands.AddAsync(newDemand);
+            await _dbContext.SaveChangesAsync(); // We save with transaction because is an aggregate root
         }
+
+        public async Task<IEnumerable<Demand>> GetBuyerDemands(Guid buyerId)
+        {
+            var buyerDemands = await _dbContext.Demands.Where(d => d.BuyerId.Equals(buyerId)).Include(d => d.DemandAttributeValues).ThenInclude(dav => dav.Attribute).ToListAsync();
+                        
+            return buyerDemands.Select(d => DemandMapper.MapFrom(d));
+        }
+                        
     }
 }

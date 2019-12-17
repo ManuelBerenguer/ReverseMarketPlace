@@ -11,7 +11,7 @@ namespace ReverseMarketPlace.Demands.Core.Repositories
     /// </summary>
     public interface IUnitOfWorkOld
     {
-        IDemandsRepositoryOld DemandsRepository { get; }
+        //IDemandsRepositoryOld DemandsRepository { get; }
         ICategoriesRepository CategoriesRepository { get; }
         IAttributesRepository AttributesRepository { get; }
         ICategoryAttributesRepository CategoryAttributesRepository { get; }

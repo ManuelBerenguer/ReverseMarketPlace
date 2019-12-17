@@ -20,6 +20,13 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Persistance_Models
         [Required]
         public AttributeDataTypeEnum DataType { get; set; }
 
+        /// <summary>
+        /// Demands where the attribute is being used
+        /// </summary>
+        public ICollection<DemandAttributeValue> DemandAttributeValues { get; set; }
+
+        public ICollection<ProductTypeAttribute> ProductTypeAttributes { get; set; }
+
         private Attribute() { }
     }
 }

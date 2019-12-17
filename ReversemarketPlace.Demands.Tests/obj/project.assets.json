@@ -2458,7 +2458,7 @@
       ]
     },
     "Microsoft.CSharp/4.5.0": {
-      "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
+      "sha512": "EGoBmf3Na2ppbhPePDE9PlX81r1HuOZH5twBrq7couJZiPTjUnD3648balerQJO6EJ8Sj+43+XuRwQ7r+3tE3w==",
       "type": "package",
       "path": "microsoft.csharp/4.5.0",
       "files": [
@@ -3261,7 +3261,7 @@
       ]
     },
     "runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "NS1U+700m4KFRHR5o4vo9DSlTmlCKu/u7dtE5sUHVIPB+xpXxYQvgBgA6wEIeCz6Yfn0Z52/72WYsToCEPJnrw==",
+      "sha512": "wWqB5kJ+vYC+IH7orP8EezottaOczECwYBFcecbkgG3IG6s8WghUdmM6pbUqSLhPibItxCWNg73rvG5cbL9tmw==",
       "type": "package",
       "path": "runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -3314,7 +3314,7 @@
       ]
     },
     "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "X7IdhILzr4ROXd8mI1BUCQMSHSQwelUlBjF1JyTKCjXaOGn2fB4EKBxQbCK2VjO3WaWIdlXZL3W6TiIVnrhX4g==",
+      "sha512": "/p8IQT2brFMDa7BHMH71LV+w5Tb3OxoLHxhn6+MGqN5xeqhM2HRHmj+7xQGJnaRn73d7ZTvp6yRCFMvolws4wA==",
       "type": "package",
       "path": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -5048,11 +5048,12 @@
       ]
     },
     "System.Net.Http/4.3.0": {
-      "sha512": "sYg+FtILtRQuYWSIAuNOELwVuVsxVyJGWQyOnlAzhV4xvhyFnON1bAzYYC+jjRW8JREM45R0R5Dgi8MTC5sEwA==",
+      "sha512": "6BBc6BUa7pWFL7KUI/c8wb18IobTZHTtcQKksxJI5F9DRDShdtOvBEJzg5jJbFdTll7gRE+5yXUlq72ciLE+QQ==",
       "type": "package",
       "path": "system.net.http/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/Xamarinmac20/_._",
@@ -7587,37 +7588,41 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\manue\\.nuget\\packages\\": {},
+    "C:\\Users\\manuel.berenguer\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\manue\\Source\\Repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\ReversemarketPlace.Demands.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\ReversemarketPlace.Demands.Tests.csproj",
       "projectName": "ReversemarketPlace.Demands.Tests",
-      "projectPath": "C:\\Users\\manue\\Source\\Repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\ReversemarketPlace.Demands.Tests.csproj",
-      "packagesPath": "C:\\Users\\manue\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\manue\\Source\\Repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\obj\\",
+      "projectPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\ReversemarketPlace.Demands.Tests.csproj",
+      "packagesPath": "C:\\Users\\manuel.berenguer\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\manue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\manuel.berenguer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+        "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Users\\manue\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj": {
-              "projectPath": "C:\\Users\\manue\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj"
+            "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj": {
+              "projectPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj"
             }
           }
         }
@@ -7675,7 +7680,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
