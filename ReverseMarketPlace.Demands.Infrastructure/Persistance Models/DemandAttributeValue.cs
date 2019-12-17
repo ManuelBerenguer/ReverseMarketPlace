@@ -16,7 +16,7 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Persistance_Models
         public Guid AttributeId { get; set; }
 
         [Required]
-        public object Value { get; set; }
+        public string Value { get; set; }
 
         public DemandAttributeValue() { }
 
@@ -25,7 +25,7 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Persistance_Models
             Id = attributeValue.Id;
             AttributeId = attributeValue.Attribute.Id;
             DemandId = demandId;
-            Value = attributeValue.Value;
+            Value = Convert.ToString(attributeValue.Value);
         }
     }
 }

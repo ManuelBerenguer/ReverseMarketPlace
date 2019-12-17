@@ -3,9 +3,9 @@ using ReverseMarketPlace.Demands.Infrastructure.Data.EF.Persistance_Models;
 
 namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Data
 {
-    public class AppDbContext : DbContext
+    public class DemandsDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
+        public DemandsDbContext(DbContextOptions<DemandsDbContext> options) : base(options) {}
 
         public DbSet<Attribute> Attributes { get; set; }
         public DbSet<Category> Categories { get; set; }

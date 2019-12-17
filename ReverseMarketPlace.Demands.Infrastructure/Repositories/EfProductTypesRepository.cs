@@ -11,9 +11,9 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Repositories
 {
     public class EfProductTypesRepository : IProductTypesRepository
     {
-        protected readonly AppDbContext _dbContext;
+        protected readonly DemandsDbContext _dbContext;
 
-        public EfProductTypesRepository(AppDbContext appDbContext)
+        public EfProductTypesRepository(DemandsDbContext appDbContext)
         {
             _dbContext = appDbContext;
         }

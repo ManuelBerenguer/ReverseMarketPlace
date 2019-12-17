@@ -10,9 +10,9 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
         private IDemandsRepository _demandsRepository;
         private ICategoriesRepository _categoriesRepository;        
         private IProductTypesRepository _productTypesRepository;
-        private readonly AppDbContext _appDbContext;
+        private readonly DemandsDbContext _appDbContext;
 
-        public EfUnitOfWork(AppDbContext appDbContext) {
+        public EfUnitOfWork(DemandsDbContext appDbContext) {
             _appDbContext = appDbContext;
         }
 

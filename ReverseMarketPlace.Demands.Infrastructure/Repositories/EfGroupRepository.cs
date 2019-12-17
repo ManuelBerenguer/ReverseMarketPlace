@@ -12,9 +12,9 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.Repositories
 {
     public class EfGroupRepository
     {
-        protected readonly AppDbContext _dbContext;
+        protected readonly DemandsDbContext _dbContext;
 
-        public EfGroupRepository(AppDbContext appDbContext) {
+        public EfGroupRepository(DemandsDbContext appDbContext) {
             _dbContext = appDbContext;
         }
 
