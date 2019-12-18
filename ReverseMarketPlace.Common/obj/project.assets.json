@@ -24,6 +24,15 @@
           "lib/netstandard2.0/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        }
+      },
       "Microsoft.Extensions.Localization.Abstractions/3.0.1": {
         "type": "package",
         "compile": {
@@ -263,6 +272,20 @@
         "ref/xamarinwatchos10/_._",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.0": {
+      "sha512": "44rDtOf1JXXAFpNT2EXMExaDm/4OJ2RXOL9i9lE4bK427nzC7Exphv+beB6IgluyE2GIoo8zezTStMXI7MQ8WA==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/3.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.3.1.0.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec",
+        "packageIcon.png"
       ]
     },
     "Microsoft.Extensions.Localization.Abstractions/3.0.1": {
@@ -967,6 +990,7 @@
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
       "AutoMapper >= 9.0.0",
+      "Microsoft.Extensions.DependencyInjection.Abstractions >= 3.1.0",
       "Microsoft.Extensions.Localization.Abstractions >= 3.0.1",
       "Microsoft.Extensions.Logging.Abstractions >= 3.0.1",
       "Newtonsoft.Json >= 12.0.3",
@@ -980,11 +1004,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
+      "projectUniqueName": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
       "projectName": "ReverseMarketPlace.Common",
-      "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
+      "projectPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
       "packagesPath": "C:\\Users\\manuel.berenguer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\obj\\",
+      "outputPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -1021,6 +1045,10 @@
           "AutoMapper": {
             "target": "Package",
             "version": "[9.0.0, )"
+          },
+          "Microsoft.Extensions.DependencyInjection.Abstractions": {
+            "target": "Package",
+            "version": "[3.1.0, )"
           },
           "Microsoft.Extensions.Localization.Abstractions": {
             "target": "Package",

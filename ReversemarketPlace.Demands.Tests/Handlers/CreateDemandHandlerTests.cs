@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using ReversemarketPlace.Demands.Tests.TestData;
 using ReverseMarketPlace.Common.Types.Messages;
-using ReverseMarketPlace.Common.Types.MessagesQueu;
+using ReverseMarketPlace.Common.Types.MessageBroker;
 using ReverseMarketPlace.Demands.Core.Domain;
 using ReverseMarketPlace.Demands.Core.Exceptions;
 using ReverseMarketPlace.Demands.Core.Handlers.Demands;

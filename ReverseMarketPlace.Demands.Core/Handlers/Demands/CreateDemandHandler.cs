@@ -3,7 +3,7 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using ReverseMarketPlace.Common.Extensions;
 using ReverseMarketPlace.Common.Types.Handlers;
-using ReverseMarketPlace.Common.Types.MessagesQueu;
+using ReverseMarketPlace.Common.Types.MessageBroker;
 using ReverseMarketPlace.Demands.Core.Constants;
 using ReverseMarketPlace.Demands.Core.Domain;
 using ReverseMarketPlace.Demands.Core.Exceptions;

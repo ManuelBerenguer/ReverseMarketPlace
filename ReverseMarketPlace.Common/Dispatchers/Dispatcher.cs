@@ -19,9 +19,15 @@ namespace ReverseMarketPlace.Common.Dispatchers
             _queryDispatcher = queryDispatcher;
         }
 
+        /// <summary>
+        /// Dispatches a query
+        /// </summary>        
         public async Task<TResult> QueryAsync<TResult>(IQuery<TResult> query)
             => await _queryDispatcher.QueryAsync<TResult>(query);
 
+        /// <summary>
+        /// Dispatches a command
+        /// </summary>        
         public async Task SendAsync<TCommand>(TCommand command) where TCommand : ICommand
             => await _commandDispatcher.SendAsync(command);
     }

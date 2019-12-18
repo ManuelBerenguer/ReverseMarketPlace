@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ReversemarketPlace.Common.Infrastructure.RabbitMq\ReversemarketPlace.Common.Infrastructure.RabbitMq.csproj" />
     <ProjectReference Include="..\ReverseMarketPlace.Demands.Infrastructure\ReverseMarketPlace.Demands.Infrastructure.Data.EF.csproj" />
   </ItemGroup>
 

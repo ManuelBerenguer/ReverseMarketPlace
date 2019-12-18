@@ -1,5 +1,5 @@
 ﻿using ReverseMarketPlace.Common.Types.Messages;
-using ReverseMarketPlace.Common.Types.MessagesQueu;
+using ReverseMarketPlace.Common.Types.MessageBroker;
 using System.Threading.Tasks;
 
 namespace ReverseMarketPlace.Common.Types.Handlers
