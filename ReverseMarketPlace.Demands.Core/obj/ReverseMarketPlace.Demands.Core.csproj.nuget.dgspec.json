@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj": {}
+    "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj": {
+    "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
+        "projectUniqueName": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
         "projectName": "ReverseMarketPlace.Common",
-        "projectPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
+        "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj",
         "packagesPath": "C:\\Users\\manuel.berenguer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\obj\\",
+        "outputPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -85,18 +85,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj": {
+    "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj",
+        "projectUniqueName": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj",
         "projectName": "ReverseMarketPlace.Demands.Core",
-        "projectPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj",
+        "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj",
         "packagesPath": "C:\\Users\\manuel.berenguer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\obj\\",
+        "outputPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -119,8 +119,8 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj": {
-                "projectPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj"
+              "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj": {
+                "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Common\\ReverseMarketPlace.Common.csproj"
               }
             }
           }
@@ -170,7 +170,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

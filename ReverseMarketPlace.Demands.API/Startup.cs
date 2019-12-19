@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using ReversemarketPlace.Common.Infrastructure.RabbitMq.Extensions;
+using ReverseMarketPlace.Common.Dispatchers;
 using ReverseMarketPlace.Demands.API.Configuration.EF;
 
 namespace ReverseMarketPlace.Demands.API
@@ -27,13 +29,22 @@ namespace ReverseMarketPlace.Demands.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
             // Configure EF
             services.AddEFConfiguration(Configuration);
 
             // Configure RabbitMq
             services.AddRabbitMq(Configuration.GetSection("rabbitMq"));
+
+            // We add all dependencies related to dispatchers
+            services.AddDispatchers();
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Reverse Market Place Demands API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +57,17 @@ namespace ReverseMarketPlace.Demands.API
 
             app.UseHttpsRedirection();
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Demands API V1");
+            });
+
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -55,5 +77,7 @@ namespace ReverseMarketPlace.Demands.API
                 endpoints.MapControllers();
             });
         }
+
+       
     }
 }

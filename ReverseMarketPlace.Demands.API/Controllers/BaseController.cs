@@ -44,7 +44,7 @@ namespace ReverseMarketPlace.Demands.API.Controllers
             => await _dispatcher.SendAsync(command);
 
         /// <summary>
-        /// Sends a command to the bus. Some subscriber will handle the command. 
+        /// Method to publish a command to the bus. Some subscriber will handle the command. 
         /// </summary>
         /// <typeparam name="T">Type of the command</typeparam>
         /// <param name="command">Command to be sent to the bus</param>
