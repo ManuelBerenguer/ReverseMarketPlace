@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RawRabbit.Common;
 using RawRabbit.DependencyInjection.ServiceCollection;
@@ -15,6 +16,9 @@ namespace ReversemarketPlace.Common.Infrastructure.RabbitMq.Extensions
 {
     public static class Extensions
     {
+        public static IBusSubscriber UseRabbitMq(this IApplicationBuilder app)
+            => new RabbitBusSubscriber(app);
+
         public static void AddRabbitMq(this IServiceCollection services, IConfigurationSection section)
         {
             // RabbitMQ Configuration

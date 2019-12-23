@@ -22,4 +22,3 @@ C:\Users\manuel.berenguer\source\repos\ReverseMarketPlace\ReverseMarketPlace.Com
 C:\Users\manuel.berenguer\source\repos\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.1\ReverseMarketPlace.Common.AssemblyInfo.cs
 C:\Users\manuel.berenguer\source\repos\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.1\ReverseMarketPlace.Common.dll
 C:\Users\manuel.berenguer\source\repos\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.1\ReverseMarketPlace.Common.pdb
-C:\Users\manuel.berenguer\source\repos\ReverseMarketPlace\ReverseMarketPlace.Common\obj\Debug\netstandard2.1\ReverseMarketPlace.Common.csprojAssemblyReference.cache
