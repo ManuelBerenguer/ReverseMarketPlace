@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
 {
+    [MessageNamespace("demands")]
     /// <summary>
     /// Represents the intention to create a new demand. Inmutable cause the properties have no setters.
     /// </summary>

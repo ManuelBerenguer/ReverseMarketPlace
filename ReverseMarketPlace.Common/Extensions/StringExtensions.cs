@@ -8,7 +8,7 @@ namespace ReverseMarketPlace.Common.Extensions
     public static class StringExtensions
     {
         /// <summary>
-        /// Modifies 
+        /// Modifies string inserting underscore between two words joined following CamelCase specification
         /// </summary>
         /// <param name="value">The string to modify with this extension method</param>
         /// <returns>The string modified</returns>
