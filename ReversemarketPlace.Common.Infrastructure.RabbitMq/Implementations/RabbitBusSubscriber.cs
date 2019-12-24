@@ -26,8 +26,8 @@ namespace ReversemarketPlace.Common.Infrastructure.RabbitMq.Implementations
             {
                 // We get the command handler related to the command type
                 var commandHandler = _serviceProvider.GetService<ICommandHandler<TCommand>>();
-
-                return await commandHandler.HandleAsync(command, correlationText);
+                                
+                await commandHandler.HandleAsync(command, correlationText);
             });
 
             return this;
@@ -35,7 +35,15 @@ namespace ReversemarketPlace.Common.Infrastructure.RabbitMq.Implementations
 
         public IBusSubscriber SubscribeEvent<TEvent>(string @namespace = null, string queueName = null, Func<TEvent, ApplicationException, IRejectedEvent> onError = null) where TEvent : IEvent
         {
-            throw new NotImplementedException();
+            _busClient.SubscribeAsync<TEvent, CorrelationContext>(async (@event, correlationText) =>
+            {
+                // We get the command handler related to the command type
+                var commandHandler = _serviceProvider.GetService<IEventHandler<TEvent>>();
+
+                await commandHandler.HandleAsync(@event, correlationText);
+            });
+
+            return this;
         }
     }
 }

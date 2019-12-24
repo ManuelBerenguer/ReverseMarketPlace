@@ -39,7 +39,7 @@ namespace ReversemarketPlace.Demands.Tests.Handlers
         public CreateDemandHandlerTests()
         {
             _createDemandHandler = new CreateDemandHandler(_unitOfWork.Object, _attributesBelongToProductTypeUseCase.Object,
-                _checkDuplicatedDemandUseCase.Object, _busPublisher.Object, _localizerCreateDemand.Object, _loggerCreateDemand.Object, null);
+                _checkDuplicatedDemandUseCase.Object, _busPublisher.Object, _localizerCreateDemand.Object, _loggerCreateDemand.Object);
         }
 
         [Fact]

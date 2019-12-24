@@ -13,7 +13,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ReversemarketPlace.Common.Infrastructure.RabbitMq.Extensions;
 using ReverseMarketPlace.Common.Dispatchers;
+using ReverseMarketPlace.Common.Types.Handlers;
 using ReverseMarketPlace.Demands.API.Configuration.EF;
+using ReverseMarketPlace.Demands.Core.Handlers.Demands;
+using ReverseMarketPlace.Demands.Core.Messages.Commands.Demands;
+using ReverseMarketPlace.Demands.Core.Messages.Events;
+using ReverseMarketPlace.Demands.Core.UseCases.Demands;
+using ReverseMarketPlace.Demands.Core.UseCases.ProductTypes;
 
 namespace ReverseMarketPlace.Demands.API
 {
@@ -40,11 +46,21 @@ namespace ReverseMarketPlace.Demands.API
             // We add all dependencies related to dispatchers
             services.AddDispatchers();
 
+            // We add localization support to be able to inject IStringLocalizer anywhere
+            services.AddLocalization();
+
+            // We add logging support to be able to inject ILogger anywhere
+            services.AddLogging();
+
+            services.AddScoped<ICommandHandler<CreateDemand>, CreateDemandHandler>();
+            services.AddScoped<IAttributesBelongToProductTypeUseCase, AttributesBelongToProductTypeUseCase>();
+            services.AddScoped<ICheckDuplicatedDemandUseCase, CheckDuplicatedDemandUseCase>();
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Reverse Market Place Demands API", Version = "v1" });
-            });
+            });            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,6 +92,9 @@ namespace ReverseMarketPlace.Demands.API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseRabbitMq()
+                .SubscribeCommand<CreateDemand>();
         }
 
        

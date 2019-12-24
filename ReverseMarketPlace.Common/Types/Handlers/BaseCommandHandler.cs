@@ -25,12 +25,12 @@ namespace ReverseMarketPlace.Common.Types.Handlers
         /// <summary>
         /// Auto mapper
         /// </summary>
-        protected readonly IMapper _mapper;
+        //protected readonly IMapper _mapper;
 
-        public BaseCommandHandler(IStringLocalizer<T> localizer, ILogger<T> logger, IMapper mapper) {
+        public BaseCommandHandler(IStringLocalizer<T> localizer, ILogger<T> logger/*, IMapper mapper*/) {
             _localizer = localizer;
             _logger = logger;
-            _mapper = mapper;
+            //_mapper = mapper;
         }
 
     }

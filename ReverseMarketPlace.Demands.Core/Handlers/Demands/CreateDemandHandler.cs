@@ -32,7 +32,7 @@ namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
 
         public CreateDemandHandler(IUnitOfWork unitOfWork, IAttributesBelongToProductTypeUseCase attributesBelongToProductTypeUseCase,
             ICheckDuplicatedDemandUseCase checkDuplicatedDemandUseCase, IBusPublisher busPublisher, IStringLocalizer<CreateDemandHandler> localizer, 
-            ILogger<CreateDemandHandler> logger, IMapper mapper) : base(localizer, logger, mapper)
+            ILogger<CreateDemandHandler> logger/*, IMapper mapper*/) : base(localizer, logger/*, mapper*/)
         {
             _unitOfWork = unitOfWork;
             _attributesBelongToProductTypeUseCase = attributesBelongToProductTypeUseCase;
