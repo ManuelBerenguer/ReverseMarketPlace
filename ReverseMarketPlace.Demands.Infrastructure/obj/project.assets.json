@@ -7049,11 +7049,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\ReverseMarketPlace.Demands.Infrastructure.Data.EF.csproj",
+      "projectUniqueName": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\ReverseMarketPlace.Demands.Infrastructure.Data.EF.csproj",
       "projectName": "ReverseMarketPlace.Demands.Infrastructure.Data.EF",
-      "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\ReverseMarketPlace.Demands.Infrastructure.Data.EF.csproj",
+      "projectPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\ReverseMarketPlace.Demands.Infrastructure.Data.EF.csproj",
       "packagesPath": "C:\\Users\\manuel.berenguer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -7076,8 +7076,8 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj": {
-              "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj"
+            "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj": {
+              "projectPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj"
             }
           }
         }

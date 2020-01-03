@@ -18,5 +18,13 @@ namespace ReverseMarketPlace.Demands.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateDemand createDemandCommand)
             => await PublishAsync(createDemandCommand, createDemandCommand.Id, "demands");
+
+        [HttpPost("Prueba")]
+        public async Task<IActionResult> Prueba([FromBody] CreateDemand createDemandCommand)
+        {
+            await SendAsync(createDemandCommand);
+
+            return AcceptedAtAction(nameof(Post));
+        }
     }
 }

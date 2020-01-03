@@ -7595,11 +7595,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\ReversemarketPlace.Demands.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\ReversemarketPlace.Demands.Tests.csproj",
       "projectName": "ReversemarketPlace.Demands.Tests",
-      "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\ReversemarketPlace.Demands.Tests.csproj",
+      "projectPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\ReversemarketPlace.Demands.Tests.csproj",
       "packagesPath": "C:\\Users\\manuel.berenguer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\obj\\",
+      "outputPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReversemarketPlace.Demands.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -7622,8 +7622,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj": {
-              "projectPath": "C:\\Users\\manuel.berenguer\\source\\repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj"
+            "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj": {
+              "projectPath": "C:\\Users\\manuel.berenguer\\Source\\Repos\\ReverseMarketPlace\\ReverseMarketPlace.Demands.Core\\ReverseMarketPlace.Demands.Core.csproj"
             }
           }
         }

@@ -42,7 +42,7 @@ namespace ReverseMarketPlace.Demands.API
 
             // Configure RabbitMq
             services.AddRabbitMq(Configuration.GetSection("rabbitMq"));
-
+            
             // We add all dependencies related to dispatchers
             services.AddDispatchers();
 
@@ -52,7 +52,8 @@ namespace ReverseMarketPlace.Demands.API
             // We add logging support to be able to inject ILogger anywhere
             services.AddLogging();
 
-            services.AddScoped<ICommandHandler<CreateDemand>, CreateDemandHandler>();
+            services.AddTransient<ICommandDispatcher, ReverseMarketPlace.Demands.API.Controllers.CommandDispatcher>();
+            services.AddScoped<ICommandHandler<CreateDemand>, CreateDemandHandlerDelete>();
             services.AddScoped<IAttributesBelongToProductTypeUseCase, AttributesBelongToProductTypeUseCase>();
             services.AddScoped<ICheckDuplicatedDemandUseCase, CheckDuplicatedDemandUseCase>();
 

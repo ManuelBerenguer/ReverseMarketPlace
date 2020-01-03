@@ -25,9 +25,9 @@ namespace ReverseMarketPlace.Common.Dispatchers
         /// <param name="command">Command to be dispatched</param>
         /// <returns>Task</returns>
         public async Task SendAsync<T>(T command) where T : ICommand
-        {
+        {            
             // We get the handler for the T command
-            ICommandHandler<T> commandHandler = _serviceProvider.GetService<ICommandHandler<T>>();
+            ICommandHandler<T> commandHandler = _serviceProvider.GetRequiredService<ICommandHandler<T>>();
 
             // We run the handler
             await commandHandler.HandleAsync(command, CorrelationContext.Empty);

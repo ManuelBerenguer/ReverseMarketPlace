@@ -10,7 +10,7 @@ namespace ReverseMarketPlace.Common.Dispatchers
         public static void AddDispatchers(this IServiceCollection services)
         {
             services.AddTransient<IDispatcher, Dispatcher>();
-            services.AddTransient<ICommandDispatcher, CommandDispatcher>();
+            //services.AddTransient<ICommandDispatcher, CommandDispatcher>();
             services.AddTransient<IQueryDispatcher, QueryDispatcher>();
         }
     }
