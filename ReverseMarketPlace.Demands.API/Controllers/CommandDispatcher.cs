@@ -29,15 +29,17 @@ namespace ReverseMarketPlace.Demands.API.Controllers
         /// <returns>Task</returns>
         public async Task SendAsync<T>(T command) where T : ICommand
         {
+            // We get the type of the command
+            Type commandType = command.GetType();
+
             // We build the type of command handler necessary for the command T
-            Type commandHandlerType = typeof(ICommandHandler<>).MakeGenericType(command.GetType());
-            ICommandHandler<T> commandHandler = _serviceProvider.GetRequiredService(commandHandlerType);
+            Type commandHandlerType = typeof(ICommandHandler<>).MakeGenericType(commandType);
 
-            // We get the handler for the T command
-            //ICommandHandler<T> commandHandler = _serviceProvider.GetRequiredService<ICommandHandler<T>>();
-
+            // We get instance of that type from the DI container
+            dynamic commandHandler = _serviceProvider.GetRequiredService(commandHandlerType);                      
+            
             // We run the handler
-            await commandHandler.HandleAsync(command, CorrelationContext.Empty);
+            await commandHandler.HandleAsync((dynamic)command, CorrelationContext.Empty);
         }
     }
 }
