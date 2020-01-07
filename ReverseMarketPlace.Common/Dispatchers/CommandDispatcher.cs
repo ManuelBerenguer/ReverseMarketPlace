@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using ReverseMarketPlace.Common.Extensions;
 
 namespace ReverseMarketPlace.Common.Dispatchers
 {
@@ -26,11 +27,11 @@ namespace ReverseMarketPlace.Common.Dispatchers
         /// <returns>Task</returns>
         public async Task SendAsync<T>(T command) where T : ICommand
         {            
-            // We get the handler for the T command
-            ICommandHandler<T> commandHandler = _serviceProvider.GetRequiredService<ICommandHandler<T>>();
+            // We get an instance of the command handler suppossed to handle the command type
+            dynamic commandHandler = command.GetCommandHandler(_serviceProvider);
 
-            // We run the handler
-            await commandHandler.HandleAsync(command, CorrelationContext.Empty);
+            // We run the command handler
+            await commandHandler.HandleAsync((dynamic)command, CorrelationContext.Empty);
         }
     }
 }

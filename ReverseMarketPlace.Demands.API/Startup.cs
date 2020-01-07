@@ -52,8 +52,11 @@ namespace ReverseMarketPlace.Demands.API
             // We add logging support to be able to inject ILogger anywhere
             services.AddLogging();
 
-            services.AddTransient<ICommandDispatcher, ReverseMarketPlace.Demands.API.Controllers.CommandDispatcher>();
-            services.AddScoped<ICommandHandler<CreateDemand>, CreateDemandHandlerDelete>();
+            services.AddTransient<ICommandDispatcher, CommandDispatcher>();
+            // Notice we declare the dependency as transient because should be resolved from the root non-requested scope.
+            // If we define the dependency as Scoped, the RabbitBusSubscriber subscribe callback method fails to resolve the dependency since it's execution is out of any
+            // Http Request scope.
+            services.AddTransient<ICommandHandler<CreateDemand>, CreateDemandHandler>(); 
             services.AddScoped<IAttributesBelongToProductTypeUseCase, AttributesBelongToProductTypeUseCase>();
             services.AddScoped<ICheckDuplicatedDemandUseCase, CheckDuplicatedDemandUseCase>();
 

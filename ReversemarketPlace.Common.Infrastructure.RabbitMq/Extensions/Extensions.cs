@@ -63,7 +63,7 @@ namespace ReversemarketPlace.Common.Infrastructure.RabbitMq.Extensions
             });
 
             // We can register implementation of publisher as singleton
-            services.AddSingleton<IBusPublisher, RabbitBusPublisher>();
+            services.AddSingleton<IBusPublisher, RabbitBusPublisher>();            
         }
 
         /// <summary>

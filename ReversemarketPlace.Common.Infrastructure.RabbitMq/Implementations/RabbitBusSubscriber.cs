@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using RawRabbit;
+using ReverseMarketPlace.Common.Extensions;
 using ReverseMarketPlace.Common.Types.Handlers;
 using ReverseMarketPlace.Common.Types.MessageBroker;
 using ReverseMarketPlace.Common.Types.Messages;
@@ -15,7 +16,7 @@ namespace ReversemarketPlace.Common.Infrastructure.RabbitMq.Implementations
         private readonly IBusClient _busClient;
 
         public RabbitBusSubscriber(IApplicationBuilder app)
-        {
+        {            
             _serviceProvider = app.ApplicationServices.GetService<IServiceProvider>();
             _busClient = _serviceProvider.GetService<IBusClient>();
         }
@@ -24,10 +25,11 @@ namespace ReversemarketPlace.Common.Infrastructure.RabbitMq.Implementations
         {
             _busClient.SubscribeAsync<TCommand, CorrelationContext>(async (command, correlationText) =>            
             {
-                // We get the command handler related to the command type
-                var commandHandler = _serviceProvider.GetService<ICommandHandler<TCommand>>();
-                                
-                await commandHandler.HandleAsync(command, correlationText);
+                // We get an instance of the command handler suppossed to handle that command type
+                dynamic commandHandler = command.GetCommandHandler(_serviceProvider);
+
+                // We run the handler
+                await commandHandler.HandleAsync((dynamic)command, correlationText);
             });
 
             return this;
