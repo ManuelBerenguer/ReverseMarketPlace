@@ -2,10 +2,11 @@
 using ReverseMarketPlace.Common.Types.Messages;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
 {
-    [MessageNamespace("demands")]
+    [MessageNamespace("demands")]    
     /// <summary>
     /// Represents the intention to create a new demand. Inmutable cause the properties have no setters.
     /// </summary>
@@ -15,7 +16,7 @@ namespace ReverseMarketPlace.Demands.Core.Messages.Commands.Demands
         /// Id of the new demand
         /// </summary>
         public Guid Id { get; }
-
+       
         /// <summary>
         /// Id of the buyer who is creating the demand
         /// </summary>

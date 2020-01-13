@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace ReverseMarketPlace.Demands.Core.Handlers.Demands
 {
     // <summary>
-    /// Handler for create demand commands
+    /// Handler to create demand commands. 
     /// </summary>
     public sealed class CreateDemandHandler : BaseCommandHandler<CreateDemandHandler>, ICommandHandler<CreateDemand>
     {

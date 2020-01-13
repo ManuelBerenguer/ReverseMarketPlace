@@ -1,4 +1,5 @@
-﻿using ReverseMarketPlace.Demands.Core.Domain;
+﻿using ReverseMarketPlace.Common.Extensions;
+using ReverseMarketPlace.Demands.Core.Domain;
 using ReverseMarketPlace.Demands.Core.Repositories;
 using ReverseMarketPlace.Demands.Infrastructure.Data.EF.Data;
 using ReverseMarketPlace.Demands.Infrastructure.Data.EF.Mappers;
@@ -21,8 +22,8 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Repositories
         public async Task<ProductType> GetByIdAsync(Guid id)
         {
             var productType = await _dbContext.ProductTypes.FindAsync(id);
-
-            return ProductTypeMapper.MapFrom(productType);
+            
+            return productType.IsNull() ? null : ProductTypeMapper.MapFrom(productType);
         }                                
     }
 }
