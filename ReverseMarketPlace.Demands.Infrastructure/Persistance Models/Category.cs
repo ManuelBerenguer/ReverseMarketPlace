@@ -26,6 +26,6 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Persistance_Models
         /// </summary>
         public ICollection<ProductType> ProductTypes { get; set; }
 
-        private Category() { }
+        public Category() { }
     }
 }

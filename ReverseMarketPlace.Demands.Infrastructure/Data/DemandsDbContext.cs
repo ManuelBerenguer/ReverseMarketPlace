@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ReverseMarketPlace.Demands.Infrastructure.Data.EF.Configuration;
 using ReverseMarketPlace.Demands.Infrastructure.Data.EF.Persistance_Models;
 
 namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Data
@@ -16,10 +17,8 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Category
-            modelBuilder.Entity<Category>()
-                .HasOne(c => c.UpperCategory)
-                .WithMany(u => u.SubCategories);
+            // Category configuration
+            modelBuilder.ApplyConfiguration(new CategoryEntityConfiguration());                
 
             // DemandAttributeValue
             modelBuilder.Entity<DemandAttributeValue>()
@@ -32,10 +31,8 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Data
                 .WithMany(att => att.DemandAttributeValues)
                 .HasForeignKey(dav => dav.AttributeId);
 
-            // ProductType
-            modelBuilder.Entity<ProductType>()
-                .HasOne(pt => pt.Category)
-                .WithMany(c => c.ProductTypes);
+            // Product Type configuration
+            modelBuilder.ApplyConfiguration(new ProductTypeEntityConfiguration());
 
             // ProductTypeAttribute
             modelBuilder.Entity<ProductTypeAttribute>()

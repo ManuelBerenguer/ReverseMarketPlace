@@ -55,6 +55,13 @@ namespace ReverseMarketPlace.Demands.Infrastructure.Data.EF.Migrations
                     b.HasIndex("UpperCategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("89e86259-91c1-4638-b86e-1f8289664fa9"),
+                            Name = "Tv & Audio"
+                        });
                 });
 
             modelBuilder.Entity("ReverseMarketPlace.Demands.Infrastructure.Data.EF.Persistance_Models.Demand", b =>
